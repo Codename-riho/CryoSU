@@ -1,36 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CryoSU launcher foreground: original snowflake artwork (not derived from BakaSU assets). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="128dp"
-    android:height="128dp"
-    android:viewportWidth="128"
-    android:viewportHeight="128">
-    <!--
-      Asset: manager/app/src/main/res/drawable/ic_launcher_foreground.xml
-      Author: OukaroMF (GitHub: @OukaroMF / https://github.com/OukaroMF)
-      Description: BakaSU App Launcher Foreground Vector Graphic
-      Copyright (c) 2026 OukaroMF. All Rights Reserved.
-      Unauthorized copying, alteration, or commercial redistribution is strictly prohibited.
-    -->
-
-    <group
-        android:pivotX="64"
-        android:pivotY="64"
-        android:scaleX="0.7"
-        android:scaleY="0.7">
-        <path
-            android:pathData="M27.23,45.96H50.39V62.86C50.39,69.26 45.2,74.44 38.81,74.44V74.44C32.41,74.44 27.23,69.26 27.23,62.86V45.96Z"
-            android:strokeWidth="4"
-            android:fillColor="#00000000"
-            android:strokeColor="@color/ic_launcher_foreground" />
-        <path
-            android:pathData="M77.61,45.96H100.77V62.86C100.77,69.26 95.59,74.44 89.19,74.44V74.44C82.8,74.44 77.61,69.26 77.61,62.86V45.96Z"
-            android:strokeWidth="4"
-            android:fillColor="#00000000"
-            android:strokeColor="@color/ic_launcher_foreground" />
-        <path
-            android:pathData="M53.39,81.43L63.72,91.75C63.87,91.91 64.13,91.91 64.28,91.75L74.61,81.43"
-            android:strokeWidth="4"
-            android:fillColor="#00000000"
-            android:strokeColor="@color/ic_launcher_foreground"
-            android:strokeLineCap="round" />
-    </group>
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M54.00,54.00 L54.00,31.00 M54.00,40.50 L47.50,36.75 M54.00,40.50 L60.50,36.75 M54.00,35.50 L50.10,33.25 M54.00,35.50 L57.90,33.25 M54.00,54.00 L73.92,42.50 M65.69,47.25 L65.69,39.75 M65.69,47.25 L72.19,51.00 M70.02,44.75 L70.02,40.25 M70.02,44.75 L73.92,47.00 M54.00,54.00 L73.92,65.50 M65.69,60.75 L72.19,57.00 M65.69,60.75 L65.69,68.25 M70.02,63.25 L73.92,61.00 M70.02,63.25 L70.02,67.75 M54.00,54.00 L54.00,77.00 M54.00,67.50 L60.50,71.25 M54.00,67.50 L47.50,71.25 M54.00,72.50 L57.90,74.75 M54.00,72.50 L50.10,74.75 M54.00,54.00 L34.08,65.50 M42.31,60.75 L42.31,68.25 M42.31,60.75 L35.81,57.00 M37.98,63.25 L37.98,67.75 M37.98,63.25 L34.08,61.00 M54.00,54.00 L34.08,42.50 M42.31,47.25 L35.81,51.00 M42.31,47.25 L42.31,39.75 M37.98,44.75 L34.08,47.00 M37.98,44.75 L37.98,40.25"
+        android:strokeColor="#0D47A1"
+        android:strokeWidth="3.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M54.00,47.50 L59.63,50.75 L59.63,57.25 L54.00,60.50 L48.37,57.25 L48.37,50.75 Z"
+        android:fillColor="#0D47A1"
+        android:strokeColor="#0D47A1"
+        android:strokeWidth="2"
+        android:strokeLineJoin="round" />
 </vector>

@@ -1,17 +1,16 @@
-# BakaSU
-<img align='right' src='BakaSU_Full.svg' width='220px' alt="BakaSU Icon">
+# CryoSU
+<img align='right' src='CryoSU.svg' width='220px' alt="CryoSU Icon">
 
-Formerly known as: ReSukiSU
+A fork of [BakaSU](https://github.com/Baka-SU/BakaSU) (formerly known as ReSukiSU).
 
 **English** | [简体中文](./zh/README.md)
 
 A [`tiann/KernelSU`](https://github.com/tiann/KernelSU)'s downstream, added some personal changes.
 
-[![Latest release](https://img.shields.io/github/v/release/Baka-SU/BakaSU?label=Release&logo=github)](https://github.com/Baka-SU/BakaSU/releases/latest)
-[![Latest CI build (nightly.link)](https://img.shields.io/badge/nightly.link-Latest%20CI%20Build-800080)](https://nightly.link/Baka-SU/BakaSU/workflows/build-manager/main)
-[![Channel](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/BakaSU_Grp)
+[![Latest release](https://img.shields.io/github/v/release/Codename-riho/CryoSU?label=Release&logo=github)](https://github.com/Codename-riho/CryoSU/releases/latest)
+[![Latest CI build (nightly.link)](https://img.shields.io/badge/nightly.link-Latest%20CI%20Build-800080)](https://nightly.link/Codename-riho/CryoSU/workflows/build-manager/main)
 [![Kernel License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-orange.svg?logo=gnu)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![Other part License：GPL v3](https://img.shields.io/github/license/Baka-SU/BakaSU?logo=gnu)](../LICENSE)
+[![Other part License：GPL v3](https://img.shields.io/github/license/Codename-riho/CryoSU?logo=gnu)](../LICENSE)
 
 ## Features
 
@@ -20,11 +19,11 @@ A [`tiann/KernelSU`](https://github.com/tiann/KernelSU)'s downstream, added some
 3. [App Profile](https://kernelsu.org/guide/app-profile.html): Lock up the root power in a cage
 4. Support non-GKI and GKI 1.0
 5. Tweaks to the manager theme and the built-in susfs management tool.
-6. Multi manager support, for default [Official KernelSU](https://github.com/tiann/KernelSU)/[KOWSU](https://github.com/KOWX712/KernelSU) is supported work as manager with BakaSU's kernel
+6. Multi manager support, for default [Official KernelSU](https://github.com/tiann/KernelSU)/[KOWSU](https://github.com/KOWX712/KernelSU) is supported work as manager with CryoSU's kernel
 
 ## Compatibility Status
 
-- BakaSU officially supports Android GKI 2.0 devices (kernel 5.10+).
+- CryoSU officially supports Android GKI 2.0 devices (kernel 5.10+).
 
 - Older kernels (3.4+) are also compatible, but the kernel will have to be built manually.
 
@@ -41,11 +40,16 @@ A [`tiann/KernelSU`](https://github.com/tiann/KernelSU)'s downstream, added some
 
 ## Integration
 
-See the [documentation](https://bakasu.org).
+See the [BakaSU documentation](https://bakasu.org) (upstream; most of it also applies to CryoSU).
 
 ## Translation
 
-If you want to submit a translation for the manager, please go to [Weblate](https://hosted.weblate.org/engage/bakasu/).
+If you want to submit a translation for the manager, please open a pull request (see Localization below).
+
+## Credits
+
+- [BakaSU](https://github.com/Baka-SU/BakaSU) (GPL-3.0): the project CryoSU is forked from; its authors keep their copyright.
+- [tiann/KernelSU](https://github.com/tiann/KernelSU): the original KernelSU.
 
 ## Sponsor
 
@@ -54,22 +58,9 @@ If you want to submit a translation for the manager, please go to [Weblate](http
 ## License
 
 - The file in the “kernel” directory is under [GPL-2.0-only](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) license.
-- The artwork and visual files ([`docs/BakaSU_Clean.svg`](./BakaSU_Clean.svg), [`docs/BakaSU_Full.svg`](./BakaSU_Full.svg), and [`manager/app/src/main/res/drawable/ic_launcher_foreground.xml`](../manager/app/src/main/res/drawable/ic_launcher_foreground.xml)) are created by [OukaroMF](https://github.com/OukaroMF) under a layered license arrangement. See [`ASSETS_LICENSE.md`](../ASSETS_LICENSE.md) and [`ASSETS_LICENSE.zh-CN.md`](../ASSETS_LICENSE.zh-CN.md) for details.
-- Except for the files or directories mentioned above, all other parts are under [GPL-3.0 or later](https://www.gnu.org/licenses/gpl-3.0.html) license.
+- The CryoSU artwork ([`docs/CryoSU.svg`](./CryoSU.svg) and [`manager/app/src/main/res/drawable/ic_launcher_foreground.xml`](../manager/app/src/main/res/drawable/ic_launcher_foreground.xml)) is original to CryoSU and is under the same license as the rest of the project.
+- Except for the `kernel` directory, all other parts are under [GPL-3.0 or later](https://www.gnu.org/licenses/gpl-3.0.html) license.
 
 ## Localization
 
-Help translate BakaSU on Weblate:
-
-https://hosted.weblate.org/engage/bakasu/
-
-[![Localization Status](https://hosted.weblate.org/widget/bakasu/multi-auto.svg)](https://hosted.weblate.org/engage/bakasu/)
-
-## Credit
-
-- [KernelSU](https://github.com/tiann/KernelSU): upstream
-- [SukiSU-Ultra/SukiSU-Ultra](https://github.com/SukiSU-Ultra/SukiSU-Ultra): fork source
-- [Kernel-Assisted Superuser](https://git.zx2c4.com/kernel-assisted-superuser/about/): The KernelSU idea.
-- [Magisk](https://github.com/topjohnwu/Magisk): The powerful root tool.
-- [genuine](https://github.com/brevent/genuine/): APK v2 signature validation.
-- [Diamorphine](https://github.com/m0nad/Diamorphine): Some rootkit skills.
+Translations live in `manager/app/src/main/res/values-*/strings.xml`. Pull requests that add or improve a translation are welcome.

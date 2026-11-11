@@ -2,7 +2,7 @@
 
 English is maintained by the developer. If you find inappropriate wording or missing translations, please open an issue or submit a pull request with details.
 
-For languages other than English and Chinese Simplified, please don't create pull requests for translations; instead, use [Weblate](https://hosted.weblate.org/engage/BakaSU).
+For languages other than English and Chinese Simplified, please open a pull request that edits the matching `manager/app/src/main/res/values-*/strings.xml`.
 
 ## Reporting bugs
 
@@ -12,7 +12,7 @@ If the issue still exists, please ensure you have tried the **latest CI build**,
 
 **You can export log from `Settings` page**
 
-When you [Open an issue](https://github.com/Baka-SU/BakaSU/issues), you **must**:
+When you [Open an issue](https://github.com/Codename-riho/CryoSU/issues), you **must**:
 
 - Select right issue template
 - Ensure it doesn't duplicate with current issues.
@@ -23,7 +23,7 @@ When you [Open an issue](https://github.com/Baka-SU/BakaSU/issues), you **must**
 
 ## Suggesting features
 
-[Open an issue](https://github.com/Baka-SU/BakaSU/issues) describing the feature you want and your reason for it.
+[Open an issue](https://github.com/Codename-riho/CryoSU/issues) describing the feature you want and your reason for it.
 
 ## Code
 
@@ -54,7 +54,7 @@ Please note:
 
         Signed-off-by: Fred Jones <fred.jones@foo.org>
 ```
->- then Joe Smith would upload the patch for BakaSU as
+>- then Joe Smith would upload the patch for CryoSU as
 ```
         kernel: patch from upstream (https://github.com/tiann/KernelSU/pull/114514)
 
