@@ -105,6 +105,7 @@ import org.cryosu.cryosu.ui.theme.CardConfig
 import org.cryosu.cryosu.ui.theme.ThemeConfig
 import org.cryosu.cryosu.ui.theme.blurEffect
 import org.cryosu.cryosu.ui.theme.blurSource
+import org.cryosu.cryosu.ui.util.LocalHandlePageChange
 import org.cryosu.cryosu.ui.util.LocalPagerState
 import org.cryosu.cryosu.ui.util.LocalPermissionRequestInterface
 import org.cryosu.cryosu.ui.util.LocalSnackbarHost
@@ -617,11 +618,14 @@ private fun StatusCard(
             }
 
             val pagerState = LocalPagerState.current
-            val pageScope = rememberCoroutineScope()
+            val handlePageChange = LocalHandlePageChange.current
+            val toastContext = LocalContext.current
             // Halaman: 0 Beranda, 1 Superuser, 2 Modul (hanya ada bila manajer full-featured).
             val openPage: (Int) -> Unit = { page ->
-                if (pagerState.pageCount > page) {
-                    pageScope.launch { pagerState.animateScrollToPage(page) }
+                if (pagerState.pageCount > page + 1) {
+                    handlePageChange(page)
+                } else {
+                    Toast.makeText(toastContext, R.string.grant_root_failed, Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -719,172 +723,105 @@ private fun InfoCard(
 ) {
     val managersList = systemInfo.managersList
 
-    SegmentedColumn(
-        title = stringResource(R.string.home_version_info),
-        modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 4.dp),
-    ) {
-        item {
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.Smartphone.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_device_model),
-                description = systemInfo.deviceModel,
-            )
-        }
-
-        item {
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.DeveloperBoard.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_kernel),
-                description = systemInfo.kernelRelease,
-            )
-        }
-
-        item(
-            visible = !isSimpleMode,
-        ) {
-            SettingsBaseWidget(
+    CryoInfoSection(title = stringResource(R.string.home_version_info)) {
+        CryoInfoRow(
+            icon = Icons.TwoTone.Smartphone.takeIf { showHomeCardIcons },
+            title = stringResource(R.string.home_device_model),
+            value = systemInfo.deviceModel,
+        )
+        CryoInfoRow(
+            icon = Icons.TwoTone.DeveloperBoard.takeIf { showHomeCardIcons },
+            title = stringResource(R.string.home_kernel),
+            value = systemInfo.kernelRelease,
+        )
+        if (!isSimpleMode) {
+            CryoInfoRow(
                 icon = Icons.TwoTone.Android.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.home_android_version),
-                description = systemInfo.androidVersion,
+                value = systemInfo.androidVersion,
             )
         }
-
-        item(
-            visible = systemStatus.isManager,
-        ) {
-            SettingsBaseWidget(
+        if (systemStatus.isManager) {
+            CryoInfoRow(
                 icon = Icons.TwoTone.Memory.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.home_kernel_version),
-                description = systemStatus.ksuFullVersion.orEmpty(),
+                value = systemStatus.ksuFullVersion.orEmpty(),
             )
         }
-
-        item {
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.Tag.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_manager_version),
-                description = "${systemInfo.managerVersion.first} (${systemInfo.managerVersion.second}/${systemInfo.managerVersion.third})",
-            )
-        }
-
-        item(
-            visible = !isSimpleMode && systemInfo.susfsEnabled && systemInfo.susfsVersion.isNotEmpty(),
-        ) {
-            SettingsBaseWidget(
+        CryoInfoRow(
+            icon = Icons.TwoTone.Tag.takeIf { showHomeCardIcons },
+            title = stringResource(R.string.home_manager_version),
+            value = "${systemInfo.managerVersion.first} (${systemInfo.managerVersion.second}/${systemInfo.managerVersion.third})",
+        )
+        if (!isSimpleMode && systemInfo.susfsEnabled && systemInfo.susfsVersion.isNotEmpty()) {
+            CryoInfoRow(
                 icon = Icons.TwoTone.Settings.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.home_susfs_version),
-                description = systemInfo.susfsVersion,
+                value = systemInfo.susfsVersion,
             )
         }
     }
 
-    SegmentedColumn(
-        title = stringResource(R.string.home_status_info),
-        modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 4.dp),
-    ) {
-        item {
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.Security.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_selinux_status),
-                description = systemInfo.selinuxStatus,
-            )
+    CryoInfoSection(title = stringResource(R.string.home_status_info)) {
+        CryoInfoRow(
+            icon = Icons.TwoTone.Security.takeIf { showHomeCardIcons },
+            title = stringResource(R.string.home_selinux_status),
+            value = systemInfo.selinuxStatus,
+        )
+
+        val seccompDisplay = when (systemInfo.seccompStatus) {
+            -1 -> stringResource(R.string.seccomp_status_not_supported)
+            0 -> stringResource(R.string.seccomp_status_disabled)
+            1 -> stringResource(R.string.seccomp_status_strict)
+            2 -> stringResource(R.string.seccomp_status_filter)
+            else -> stringResource(R.string.seccomp_status_unknown)
         }
+        CryoInfoRow(
+            icon = Icons.TwoTone.FilterList.takeIf { showHomeCardIcons },
+            title = stringResource(R.string.home_seccomp_status),
+            value = seccompDisplay,
+        )
 
-        item {
-            val seccompDisplay = when (systemInfo.seccompStatus) {
-                -1 -> stringResource(R.string.seccomp_status_not_supported)
-                0 -> stringResource(R.string.seccomp_status_disabled)
-                1 -> stringResource(R.string.seccomp_status_strict)
-                2 -> stringResource(R.string.seccomp_status_filter)
-                else -> stringResource(R.string.seccomp_status_unknown)
-            }
-
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.FilterList.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_seccomp_status),
-                description = seccompDisplay,
-            )
-        }
-
-        item(
-            visible = !isSimpleMode && managersList != null,
-        ) {
-            val signatureMap =
-                managersList?.managers.orEmpty().groupBy { it.signatureIndex }
-            val managersText = buildString {
-                signatureMap.toSortedMap().forEach { (signatureIndex, managers) ->
-                    append(managers.joinToString(", ") { "UID: ${it.uid}" })
-                    append(" ")
-                    append(
-                        when (signatureIndex) {
-                            0 -> "(${stringResource(R.string.app_name)})"
-
-                            255 -> "(${stringResource(R.string.dynamic_managerature)})"
-
-                            else -> if (signatureIndex >= 1) {
-                                "(${
-                                    stringResource(
-                                        R.string.signature_index,
-                                        signatureIndex,
-                                    )
-                                })"
-                            } else {
-                                "(${stringResource(R.string.unknown_signature)})"
-                            }
-                        },
-                    )
-                    append(" | ")
+        if (!isSimpleMode && managersList != null) {
+            val signatureMap = managersList.managers.groupBy { it.signatureIndex }
+            val appName = stringResource(R.string.app_name)
+            val dynamicName = stringResource(R.string.dynamic_managerature)
+            val unknownName = stringResource(R.string.unknown_signature)
+            val managersText = signatureMap.toSortedMap().entries.joinToString(" | ") { (signatureIndex, managers) ->
+                val label = when {
+                    signatureIndex == 0 -> appName
+                    signatureIndex == 255 -> dynamicName
+                    signatureIndex >= 1 -> stringResource(R.string.signature_index, signatureIndex)
+                    else -> unknownName
                 }
-            }.trimEnd(' ', '|')
-
-            SettingsBaseWidget(
+                managers.joinToString(", ") { "UID: ${it.uid}" } + " ($label)"
+            }
+            CryoInfoRow(
                 icon = Icons.TwoTone.Group.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.multi_manager_list),
-                description = managersText.ifEmpty { stringResource(R.string.no_active_manager) },
+                value = managersText.ifEmpty { stringResource(R.string.no_active_manager) },
             )
         }
 
-        item(
-            visible = !isSimpleMode && systemStatus.isFullFeatured,
-        ) {
-            SettingsBaseWidget(
+        if (!isSimpleMode && systemStatus.isFullFeatured) {
+            CryoInfoRow(
                 icon = Icons.TwoTone.Tune.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.home_hook_type),
-                description = systemStatus.hookType,
+                value = systemStatus.hookType,
             )
         }
-
-        item(
-            visible = !isSimpleMode && systemInfo.zygiskImplement.isNotEmpty() && systemInfo.zygiskImplement != "None",
-        ) {
-            SettingsBaseWidget(
+        if (!isSimpleMode && systemInfo.zygiskImplement.isNotEmpty() && systemInfo.zygiskImplement != "None") {
+            CryoInfoRow(
                 icon = Icons.TwoTone.Extension.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.home_zygisk_implement),
-                description = systemInfo.zygiskImplement,
+                value = systemInfo.zygiskImplement,
             )
         }
-
-        item(
-            visible = !isSimpleMode && systemInfo.metaModuleImplement.isNotEmpty() && systemInfo.metaModuleImplement != "None",
-        ) {
-            SettingsBaseWidget(
+        if (!isSimpleMode && systemInfo.metaModuleImplement.isNotEmpty() && systemInfo.metaModuleImplement != "None") {
+            CryoInfoRow(
                 icon = Icons.TwoTone.Extension.takeIf { showHomeCardIcons },
-                iconPlaceholder = false,
                 title = stringResource(R.string.home_meta_module_implement),
-                description = systemInfo.metaModuleImplement,
+                value = systemInfo.metaModuleImplement,
             )
         }
     }

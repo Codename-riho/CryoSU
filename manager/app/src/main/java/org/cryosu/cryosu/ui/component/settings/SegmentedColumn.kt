@@ -6,10 +6,15 @@ import android.os.Build
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.ListItemDefaults
@@ -24,6 +29,7 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
@@ -35,6 +41,7 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
@@ -164,16 +171,28 @@ fun SegmentedColumn(
 
     Column(modifier = modifier.padding(contentPadding)) {
         if (title.isNotEmpty()) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
+            Row(
                 modifier = Modifier.padding(
                     start = PADDING_HORIZONTAL.dp,
                     top = PADDING_VERTICAL.dp,
                     bottom = 8.dp,
                 ),
-            )
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(width = 4.dp, height = 16.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primary),
+                )
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
         }
 
         val floatSpring = spring<Float>(dampingRatio = bouncyDamping, stiffness = bouncyStiffness)
@@ -211,8 +230,8 @@ fun SegmentedColumn(
                             val isLast =
                                 index == lastVisibleIndex || (index == allItems.lastIndex && !itemData.visible)
 
-                            val baseTopRadius = if (isFirst) 16.dp else 5.dp
-                            val baseBottomRadius = if (isLast) 16.dp else 5.dp
+                            val baseTopRadius = if (isFirst) 28.dp else 8.dp
+                            val baseBottomRadius = if (isLast) 28.dp else 8.dp
 
                             // Blurred backgrounds must be rendered as one continuous group. Keep
                             // only the outer corners rounded, regardless of item-level overrides.
