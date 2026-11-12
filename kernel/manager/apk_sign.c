@@ -8,6 +8,7 @@
 #ifdef CONFIG_KSU_DEBUG
 #include <linux/moduleparam.h>
 #endif
+#include <crypto/algapi.h>
 #include <crypto/hash.h>
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 11, 0)
 #include <crypto/sha2.h>
@@ -25,6 +26,20 @@
 #include "klog.h" // IWYU pragma: keep
 #include "manager_sign.h"
 #include "compat/kernel_compat.h"
+
+/*
+ * Constant-time comparison of the certificate digest (hex string).
+ * Avoids leaking the position of the first mismatching byte through timing.
+ * Length is not secret, so a length mismatch may return early.
+ */
+static bool ksu_sign_hash_equal(const char *expected, const char *actual)
+{
+    size_t n = SHA256_DIGEST_SIZE * 2;
+
+    if (strlen(expected) != n)
+        return false;
+    return crypto_memneq(expected, actual, n) == 0;
+}
 
 struct sdesc {
     struct shash_desc shash;
@@ -163,7 +178,7 @@ static bool check_block(struct file *fp, loff_t *pos, loff_t block_end, u8 *matc
     BUILD_BUG_ON(ARRAY_SIZE(apk_sign_keys) >= 253);
     for (i = 0; i < ARRAY_SIZE(apk_sign_keys); i++) {
         sign_key = apk_sign_keys[i];
-        if (certificate_size == sign_key.size && strcmp(sign_key.sha256, hash_str) == 0) {
+        if (certificate_size == sign_key.size && ksu_sign_hash_equal(sign_key.sha256, hash_str)) {
             if (matched_index)
                 *matched_index = i;
             signature_valid = true;
@@ -173,7 +188,7 @@ static bool check_block(struct file *fp, loff_t *pos, loff_t block_end, u8 *matc
 
     if (!signature_valid && ksu_is_dynamic_manager_enabled()) {
         sign_key = ksu_get_dynamic_manager_sign();
-        if (certificate_size == sign_key.size && strcmp(sign_key.sha256, hash_str) == 0) {
+        if (certificate_size == sign_key.size && ksu_sign_hash_equal(sign_key.sha256, hash_str)) {
             if (matched_index)
                 *matched_index = KSU_SIGNATURE_INDEX_DYNAMIC_MANAGER;
             signature_valid = true;

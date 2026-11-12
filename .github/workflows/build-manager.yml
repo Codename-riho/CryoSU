@@ -164,6 +164,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
 
       - name: Build APK
+        env:
+          # Opsional: variabel repo, isi dari `ksud debug get-sign <apk>` (mis. "size: 0x..., hash: ...")
+          ORG_GRADLE_PROJECT_cryosuOfficialSignature: ${{ vars.CRYOSU_OFFICIAL_SIGNATURE }}
         run: |
           export BUILD_EXTRA_ARGS=""
           if [ "${{ github.event_name }}" == "pull_request" ]; then

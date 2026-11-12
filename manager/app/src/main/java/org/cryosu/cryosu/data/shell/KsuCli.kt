@@ -35,6 +35,8 @@ import org.json.JSONObject
 class KsuCliRepository(context: Context) {
     private companion object {
         const val TAG = "KsuCli"
+        const val LEGACY_OFFICIAL_SIGNATURE =
+            "size: 0x377, hash: d3469712b6214462764a1d8d3e5cbe1d6819a0b629791b9f4101867821f1df64"
         val MODULE_ID_REGEX = Regex("^[a-zA-Z][a-zA-Z0-9._-]+$")
     }
 
@@ -171,8 +173,9 @@ class KsuCliRepository(context: Context) {
         val out = shell.newJob()
             .add("${getKsuDaemonPath()} debug get-sign ${shellQuote(packageResourcePath)}")
             .to(ArrayList<String>(), null).exec().out
-        out.firstOrNull()?.trim()
-            .orEmpty() == "size: 0x377, hash: d3469712b6214462764a1d8d3e5cbe1d6819a0b629791b9f4101867821f1df64"
+        val signature = out.firstOrNull()?.trim().orEmpty()
+        signature == LEGACY_OFFICIAL_SIGNATURE ||
+            (BuildConfig.OFFICIAL_SIGNATURE.isNotEmpty() && signature == BuildConfig.OFFICIAL_SIGNATURE)
     }
 
     suspend fun getFeatureStatus(feature: String): String = withContext(Dispatchers.IO) {

@@ -137,6 +137,12 @@ android {
 
         val isPrBuild = rootProject.extra["isPrBuild"] as Boolean
         buildConfigField("boolean", "IS_PR_BUILD", isPrBuild.toString())
+        // Tanda tangan rilis resmi CryoSU, format keluaran `ksud debug get-sign <apk>`:
+        // "size: 0x..., hash: ..." . Atur lewat -PcryosuOfficialSignature=... atau
+        // ORG_GRADLE_PROJECT_cryosuOfficialSignature. Kosong = cocokkan hanya dengan BakaSU lama.
+        val officialSignature = (project.findProperty("cryosuOfficialSignature") as String?)
+            .orEmpty().trim()
+        buildConfigField("String", "OFFICIAL_SIGNATURE", "\"" + officialSignature.replace("\"", "") + "\"")
         resValue("string", "app_name", managerName)
 
         externalNativeBuild {
