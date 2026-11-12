@@ -787,12 +787,17 @@ private fun InfoCard(
             val appName = stringResource(R.string.app_name)
             val dynamicName = stringResource(R.string.dynamic_managerature)
             val unknownName = stringResource(R.string.unknown_signature)
-            val signatureContext = LocalContext.current
+            val signatureLabels = mutableMapOf<Int, String>()
+            for (index in signatureMap.keys) {
+                if (index >= 1 && index != 255) {
+                    signatureLabels[index] = stringResource(R.string.signature_index, index)
+                }
+            }
             val managersText = signatureMap.toSortedMap().entries.joinToString(" | ") { (signatureIndex, managers) ->
                 val label = when {
                     signatureIndex == 0 -> appName
                     signatureIndex == 255 -> dynamicName
-                    signatureIndex >= 1 -> signatureContext.getString(R.string.signature_index, signatureIndex)
+                    signatureIndex >= 1 -> signatureLabels.getValue(signatureIndex)
                     else -> unknownName
                 }
                 managers.joinToString(", ") { "UID: ${it.uid}" } + " ($label)"
