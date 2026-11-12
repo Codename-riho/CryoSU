@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -101,3 +103,60 @@ fun SuSFSHero(
         }
     }
 }
+
+/** Fitur SuSFS aktif sebagai chip ringkas (mis. sus_path, sus_mount), bukan nama CONFIG panjang. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun SuSFSFeatureChips(
+    title: String,
+    features: List<String>,
+    emptyText: String,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(28.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            .padding(horizontal = 18.dp, vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.primary,
+        )
+        if (features.isEmpty()) {
+            Text(
+                text = emptyText,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        } else {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                features.forEach { feature ->
+                    Text(
+                        text = feature,
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(50))
+                            .background(MaterialTheme.colorScheme.secondaryContainer)
+                            .padding(horizontal = 12.dp, vertical = 6.dp),
+                    )
+                }
+            }
+        }
+    }
+}
+
+/** Ubah "CONFIG_KSU_SUSFS_SUS_PATH" menjadi "sus_path"; pisahkan per baris/spasi/koma. */
+fun simplifySuSFSFeatures(raw: String): List<String> = raw
+    .split(Regex("[\\s,]+"))
+    .map { it.trim().removePrefix("CONFIG_KSU_SUSFS_").removePrefix("CONFIG_").lowercase() }
+    .filter { it.isNotEmpty() }
+    .distinct()

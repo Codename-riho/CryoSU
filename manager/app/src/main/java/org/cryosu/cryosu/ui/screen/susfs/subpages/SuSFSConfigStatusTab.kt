@@ -14,7 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.RestartAlt
 import androidx.compose.material.icons.twotone.Restore
 import androidx.compose.material.icons.twotone.Save
-import androidx.compose.material.icons.twotone.TaskAlt
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -37,11 +36,12 @@ import org.cryosu.cryosu.R
 import org.cryosu.cryosu.domain.model.SuSFSStatusInfo
 import org.cryosu.cryosu.ui.component.WarningCard
 import org.cryosu.cryosu.ui.component.settings.SegmentedColumn
-import org.cryosu.cryosu.ui.component.settings.SettingsBaseWidget
 import org.cryosu.cryosu.ui.component.settings.SettingsJumpPageWidget
 import org.cryosu.cryosu.ui.screen.susfs.RegisterSuSFSRefresh
 import org.cryosu.cryosu.ui.screen.susfs.SuSFSRefreshRegistrar
+import org.cryosu.cryosu.ui.screen.susfs.component.SuSFSFeatureChips
 import org.cryosu.cryosu.ui.screen.susfs.component.SuSFSHero
+import org.cryosu.cryosu.ui.screen.susfs.component.simplifySuSFSFeatures
 import org.cryosu.cryosu.ui.util.LocalSnackbarHost
 import org.cryosu.cryosu.ui.util.showReplacingSnackbar
 import org.cryosu.cryosu.ui.viewmodel.SuSFSUiAction
@@ -103,17 +103,12 @@ fun StatusTab(
         }
 
         item {
-            SegmentedColumn {
-                item {
-                    SettingsBaseWidget(
-                        icon = Icons.TwoTone.TaskAlt,
-                        title = stringResource(R.string.susfs_status_enabled_features),
-                        description = statusInfo.enabledFeatures.ifBlank {
-                            stringResource(R.string.susfs_status_no_data)
-                        },
-                    )
-                }
-            }
+            SuSFSFeatureChips(
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                title = stringResource(R.string.susfs_status_enabled_features),
+                features = simplifySuSFSFeatures(statusInfo.enabledFeatures),
+                emptyText = stringResource(R.string.susfs_status_no_data),
+            )
         }
 
         item {
