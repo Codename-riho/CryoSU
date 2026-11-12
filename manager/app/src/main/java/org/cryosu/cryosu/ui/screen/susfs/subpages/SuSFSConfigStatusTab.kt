@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.twotone.Info
 import androidx.compose.material.icons.twotone.RestartAlt
 import androidx.compose.material.icons.twotone.Restore
 import androidx.compose.material.icons.twotone.Save
-import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material.icons.twotone.TaskAlt
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,9 +39,9 @@ import org.cryosu.cryosu.ui.component.WarningCard
 import org.cryosu.cryosu.ui.component.settings.SegmentedColumn
 import org.cryosu.cryosu.ui.component.settings.SettingsBaseWidget
 import org.cryosu.cryosu.ui.component.settings.SettingsJumpPageWidget
-import org.cryosu.cryosu.ui.component.settings.SettingsSwitchWidget
 import org.cryosu.cryosu.ui.screen.susfs.RegisterSuSFSRefresh
 import org.cryosu.cryosu.ui.screen.susfs.SuSFSRefreshRegistrar
+import org.cryosu.cryosu.ui.screen.susfs.component.SuSFSHero
 import org.cryosu.cryosu.ui.util.LocalSnackbarHost
 import org.cryosu.cryosu.ui.util.showReplacingSnackbar
 import org.cryosu.cryosu.ui.viewmodel.SuSFSUiAction
@@ -92,35 +90,20 @@ fun StatusTab(
         }
 
         item {
+            SuSFSHero(
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                title = "SuSFS",
+                version = statusInfo.version.ifBlank { stringResource(R.string.susfs_status_no_data) },
+                variant = statusInfo.variant.ifBlank { stringResource(R.string.susfs_status_no_data) },
+                summary = stringResource(R.string.susfs_enable_config_summary),
+                checked = configEnabled,
+                enabled = configEnabledLoaded,
+                onCheckedChange = onConfigEnabledChange,
+            )
+        }
+
+        item {
             SegmentedColumn {
-                item {
-                    SettingsSwitchWidget(
-                        icon = Icons.TwoTone.Save,
-                        title = stringResource(R.string.susfs_enable_config),
-                        description = stringResource(R.string.susfs_enable_config_summary),
-                        checked = configEnabled,
-                        enabled = configEnabledLoaded,
-                        onCheckedChange = onConfigEnabledChange,
-                    )
-                }
-                item {
-                    SettingsBaseWidget(
-                        icon = Icons.TwoTone.Info,
-                        title = stringResource(R.string.susfs_status_version),
-                        description = statusInfo.version.ifBlank {
-                            stringResource(R.string.susfs_status_no_data)
-                        },
-                    )
-                }
-                item {
-                    SettingsBaseWidget(
-                        icon = Icons.TwoTone.Settings,
-                        title = stringResource(R.string.susfs_status_variant),
-                        description = statusInfo.variant.ifBlank {
-                            stringResource(R.string.susfs_status_no_data)
-                        },
-                    )
-                }
                 item {
                     SettingsBaseWidget(
                         icon = Icons.TwoTone.TaskAlt,

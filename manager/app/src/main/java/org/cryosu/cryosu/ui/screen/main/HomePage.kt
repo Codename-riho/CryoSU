@@ -13,7 +13,6 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -106,6 +105,7 @@ import org.cryosu.cryosu.ui.theme.CardConfig
 import org.cryosu.cryosu.ui.theme.ThemeConfig
 import org.cryosu.cryosu.ui.theme.blurEffect
 import org.cryosu.cryosu.ui.theme.blurSource
+import org.cryosu.cryosu.ui.util.LocalPagerState
 import org.cryosu.cryosu.ui.util.LocalPermissionRequestInterface
 import org.cryosu.cryosu.ui.util.LocalSnackbarHost
 import org.cryosu.cryosu.ui.util.adaptiveScaffoldWindowInsets
@@ -616,20 +616,29 @@ private fun StatusCard(
                 if (Os.uname().machine != "aarch64") add(Os.uname().machine)
             }
 
-            Column(
-                modifier = Modifier.clickable { onClick(Offset.Zero) },
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
+            val pagerState = LocalPagerState.current
+            val pageScope = rememberCoroutineScope()
+            // Halaman: 0 Beranda, 1 Superuser, 2 Modul (hanya ada bila manajer full-featured).
+            val openPage: (Int) -> Unit = { page ->
+                if (pagerState.pageCount > page) {
+                    pageScope.launch { pagerState.animateScrollToPage(page) }
+                }
+            }
+
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 CryoStatusHero(
                     title = workingModeText,
                     subtitle = "CryoSU",
                     chips = chips,
+                    onClick = { onClick(Offset.Zero) },
                 )
                 CryoStatTiles(
                     leftLabel = stringResource(R.string.superuser),
                     leftValue = uiState.systemInfo.superuserCount,
                     rightLabel = stringResource(R.string.module),
                     rightValue = uiState.systemInfo.moduleCount,
+                    onLeftClick = { openPage(1) },
+                    onRightClick = { openPage(2) },
                 )
             }
         }

@@ -5,6 +5,8 @@ import com.materialkolor.dynamiccolor.ColorSpec
 import org.cryosu.cryosu.data.AppSettingsRepository
 import org.cryosu.cryosu.domain.model.coerceCompatibleWith
 
+private const val CRYO_SEED_COLOR: Int = 0xFF5B9BD5.toInt()
+
 class ThemeRepository(
     private val settings: AppSettingsRepository,
     private val monetCompatColorSource: MonetCompatColorSource,
@@ -44,13 +46,14 @@ class ThemeRepository(
         return settings.getInt("theme_seed_color", defaultSeedColor())
     }
 
-    fun defaultSeedColor(): Int = monetCompatColorSource.seedColor()
+    // Biru es CryoSU (agak pucat). Dipakai sebagai warna dasar bila pengguna belum memilih warna.
+    fun defaultSeedColor(): Int = CRYO_SEED_COLOR
 
     fun saveDynamicColorState(enabled: Boolean) {
         settings.putBoolean("use_dynamic_color", enabled)
     }
 
-    fun loadDynamicColorState(): Boolean = settings.getBoolean("use_dynamic_color", true)
+    fun loadDynamicColorState(): Boolean = settings.getBoolean("use_dynamic_color", false)
 
     fun saveDynamicColorSpec(
         spec: ColorSpec.SpecVersion,

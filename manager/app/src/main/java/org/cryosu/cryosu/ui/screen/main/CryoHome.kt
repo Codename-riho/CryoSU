@@ -1,6 +1,7 @@
 package org.cryosu.cryosu.ui.screen.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,12 +38,14 @@ fun CryoStatusHero(
     subtitle: String,
     chips: List<String>,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
 ) {
     val colors = MaterialTheme.colorScheme
     Box(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(32.dp))
+            .clickable(onClick = onClick)
             .background(
                 Brush.linearGradient(
                     listOf(colors.primaryContainer, colors.tertiaryContainer),
@@ -100,19 +103,22 @@ fun CryoStatTiles(
     rightLabel: String,
     rightValue: Int,
     modifier: Modifier = Modifier,
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {},
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        CryoStatTile(leftLabel, leftValue, Modifier.weight(1f))
-        CryoStatTile(rightLabel, rightValue, Modifier.weight(1f))
+        CryoStatTile(leftLabel, leftValue, onLeftClick, Modifier.weight(1f))
+        CryoStatTile(rightLabel, rightValue, onRightClick, Modifier.weight(1f))
     }
 }
 
 @Composable
-private fun CryoStatTile(label: String, value: Int, modifier: Modifier = Modifier) {
+private fun CryoStatTile(label: String, value: Int, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
+        onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(24.dp),
         color = MaterialTheme.colorScheme.surfaceContainerHigh,

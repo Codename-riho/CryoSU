@@ -6,23 +6,25 @@ import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LargeFlexibleTopAppBar
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
@@ -206,13 +208,6 @@ fun SuSFSConfigScreen() {
         initialPage = defaultPage,
         pageCount = { subpages.size },
     )
-    val visibleSubpages = subpages.withIndex().filter { (_, subpage) ->
-        !subpage.requirePersist || configEnabled == true
-    }
-    val selectedTabIndex = visibleSubpages
-        .indexOfFirst { it.index == pagerState.currentPage }
-        .coerceAtLeast(0)
-
     LaunchedEffect(Unit) {
         scrollBehavior.state.heightOffset = scrollBehavior.state.heightOffsetLimit
     }
@@ -259,17 +254,12 @@ fun SuSFSConfigScreen() {
                     windowInsets = TopAppBarDefaults.windowInsets.add(WindowInsets(left = 12.dp)),
                 )
 
-                PrimaryScrollableTabRow(
-                    selectedTabIndex = selectedTabIndex,
-                    containerColor =
-                        if (themeConfig.isEnableBlur) {
-                            Color.Transparent
-                        } else {
-                            MaterialTheme.colorScheme.surfaceContainer.copy(cardConfig.cardAlpha)
-                        },
-                    edgePadding = 0.dp,
-                    minTabWidth = 0.dp,
-                    modifier = Modifier.fillMaxWidth(),
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState())
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     subpages.forEachIndexed { index, subpage ->
                         val tabVisible = !subpage.requirePersist || configEnabled == true
@@ -278,18 +268,15 @@ fun SuSFSConfigScreen() {
                             enter = fadeIn() + expandHorizontally(expandFrom = Alignment.Start),
                             exit = fadeOut() + shrinkHorizontally(shrinkTowards = Alignment.Start),
                         ) {
-                            Tab(
+                            FilterChip(
                                 selected = tabVisible && pagerState.currentPage == index,
                                 onClick = {
                                     coroutineScope.launch {
                                         pagerState.animateScrollToPage(index)
                                     }
                                 },
-                                modifier = Modifier.widthIn(
-                                    min = TabRowDefaults.ScrollableTabRowMinTabWidth,
-                                ),
-                                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                                text = { Text(subpage.title) },
+                                label = { Text(subpage.title) },
+                                shape = RoundedCornerShape(50),
                             )
                         }
                     }
