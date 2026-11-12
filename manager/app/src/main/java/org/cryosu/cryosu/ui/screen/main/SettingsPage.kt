@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.Article
 import androidx.compose.material.icons.automirrored.twotone.Undo
+import androidx.compose.material.icons.twotone.AcUnit
 import androidx.compose.material.icons.twotone.Adb
 import androidx.compose.material.icons.twotone.BugReport
 import androidx.compose.material.icons.twotone.Delete
@@ -181,6 +182,15 @@ fun SettingsPage(bottomPadding: Dp) {
                 bottom = innerPadding.calculateBottomPadding() + bottomPadding + 15.dp,
             ),
         ) {
+            item {
+                CryoPageBanner(
+                    icon = Icons.TwoTone.AcUnit,
+                    title = stringResource(R.string.app_name),
+                    subtitle = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+            }
+
             // 配置卡片
             if (homeState.systemStatus.isFullFeatured) {
                 item {

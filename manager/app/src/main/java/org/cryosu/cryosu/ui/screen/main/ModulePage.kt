@@ -1240,15 +1240,18 @@ fun ModuleItem(
 
     Surface(
         modifier = Modifier
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(28.dp))
             .renderBackgroundBlur(),
         color =
             if (themeConfig.isEnableBlurExp) {
                 Color.Transparent
+            } else if (isEnabled && !module.remove) {
+                // Modul aktif diberi warna aksen, modul nonaktif tetap netral.
+                MaterialTheme.colorScheme.primaryContainer.copy(cardConfig.cardAlpha)
             } else {
                 MaterialTheme.colorScheme.surfaceBright.copy(cardConfig.cardAlpha)
             },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(28.dp),
     ) {
         val textDecoration = if (!module.remove) null else TextDecoration.LineThrough
         val interactionSource = remember { MutableInteractionSource() }

@@ -375,6 +375,15 @@ private fun SuperUserContent(
                     )
                 }
             }
+            item(key = "cryo-summary") {
+                CryoStatTiles(
+                    leftLabel = "ROOT",
+                    leftValue = uiState.appGroupList.count { it.allowSu },
+                    rightLabel = "UMOUNT",
+                    rightValue = uiState.appGroupList.count { !it.allowSu && it.shouldUmount },
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+            }
             lazySegmentColumn(
                 items = uiState.appGroupList,
                 key = { _, appGroup -> "${appGroup.uid}-${appGroup.profileKey}" },
@@ -496,6 +505,8 @@ private fun AppGroupItem(
         onClick = {
             onClick()
         },
+        // Aplikasi dengan akses root diberi warna aksen agar mudah dikenali.
+        containerColor = if (appGroup.allowSu) MaterialTheme.colorScheme.primaryContainer else null,
         title = mainApp.label,
         description = if (appGroup.apps.size > 1) {
             stringResource(R.string.group_contains_apps, appGroup.apps.size)

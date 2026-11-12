@@ -105,8 +105,8 @@ fun CryoStatTiles(
     rightLabel: String,
     rightValue: Int,
     modifier: Modifier = Modifier,
-    onLeftClick: () -> Unit = {},
-    onRightClick: () -> Unit = {},
+    onLeftClick: (() -> Unit)? = null,
+    onRightClick: (() -> Unit)? = null,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -118,13 +118,8 @@ fun CryoStatTiles(
 }
 
 @Composable
-private fun CryoStatTile(label: String, value: Int, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    Surface(
-        onClick = onClick,
-        modifier = modifier,
-        shape = RoundedCornerShape(24.dp),
-        color = MaterialTheme.colorScheme.surfaceContainerHigh,
-    ) {
+private fun CryoStatTile(label: String, value: Int, onClick: (() -> Unit)?, modifier: Modifier = Modifier) {
+    val content: @Composable () -> Unit = {
         Column(
             modifier = Modifier.padding(horizontal = 18.dp, vertical = 16.dp),
         ) {
@@ -139,6 +134,56 @@ private fun CryoStatTile(label: String, value: Int, onClick: () -> Unit, modifie
                 text = label,
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+    val shape = RoundedCornerShape(24.dp)
+    val color = MaterialTheme.colorScheme.surfaceContainerHigh
+    if (onClick != null) {
+        Surface(onClick = onClick, modifier = modifier, shape = shape, color = color, content = content)
+    } else {
+        Surface(modifier = modifier, shape = shape, color = color, content = content)
+    }
+}
+
+/** Banner kecil untuk puncak halaman: ikon, judul, dan keterangan singkat. */
+@Composable
+fun CryoPageBanner(
+    icon: ImageVector,
+    title: String,
+    subtitle: String,
+    modifier: Modifier = Modifier,
+) {
+    val colors = MaterialTheme.colorScheme
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(28.dp))
+            .background(Brush.linearGradient(listOf(colors.secondaryContainer, colors.tertiaryContainer)))
+            .padding(horizontal = 18.dp, vertical = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .size(44.dp)
+                .clip(CircleShape)
+                .background(colors.secondary),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(imageVector = icon, contentDescription = null, tint = colors.onSecondary, modifier = Modifier.size(24.dp))
+        }
+        Column {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = colors.onSecondaryContainer,
+            )
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = colors.onSecondaryContainer.copy(alpha = 0.78f),
             )
         }
     }
