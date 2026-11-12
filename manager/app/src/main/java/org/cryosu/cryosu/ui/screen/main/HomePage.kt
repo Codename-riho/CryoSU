@@ -255,19 +255,32 @@ fun HomePage(
                     Spacer(modifier = Modifier.height(10.dp))
                 }
 
-                if (!uiState.systemStatus.isOfficialSignature) {
+                val noticeContext = LocalContext.current
+                val noticePrefs = remember {
+                    noticeContext.getSharedPreferences("cryosu_ui", android.content.Context.MODE_PRIVATE)
+                }
+                var unofficialNoticeDismissed by remember {
+                    mutableStateOf(noticePrefs.getBoolean("dismiss_unofficial_notice", false))
+                }
+                if (!uiState.systemStatus.isOfficialSignature && !unofficialNoticeDismissed) {
+                    // Peringatan informatif (tertiary) yang bisa ditutup, bukan alarm merah.
                     WarningCard(
                         message = stringResource(
                             R.string.unofficial_version_notice,
                             stringResource(R.string.app_name),
                         ),
+                        color = MaterialTheme.colorScheme.tertiaryContainer,
                         icon = {
                             Icon(
                                 imageVector = Icons.TwoTone.Error,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onErrorContainer,
+                                tint = MaterialTheme.colorScheme.onTertiaryContainer,
                                 modifier = Modifier.size(18.dp),
                             )
+                        },
+                        onClose = {
+                            unofficialNoticeDismissed = true
+                            noticePrefs.edit().putBoolean("dismiss_unofficial_notice", true).apply()
                         },
                     )
                     Spacer(modifier = Modifier.height(10.dp))
