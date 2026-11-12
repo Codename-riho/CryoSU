@@ -13,6 +13,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,7 +25,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -43,9 +43,7 @@ import androidx.compose.material.icons.twotone.Security
 import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material.icons.twotone.Smartphone
 import androidx.compose.material.icons.twotone.Tag
-import androidx.compose.material.icons.twotone.TaskAlt
 import androidx.compose.material.icons.twotone.Tune
-import androidx.compose.material.icons.twotone.VolunteerActivism
 import androidx.compose.material.icons.twotone.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -104,7 +102,6 @@ import org.cryosu.cryosu.ui.component.settings.SegmentedColumn
 import org.cryosu.cryosu.ui.component.settings.SettingsBaseWidget
 import org.cryosu.cryosu.ui.navigation.LocalNavigator
 import org.cryosu.cryosu.ui.navigation.Route
-import org.cryosu.cryosu.ui.screen.LabelText
 import org.cryosu.cryosu.ui.theme.CardConfig
 import org.cryosu.cryosu.ui.theme.ThemeConfig
 import org.cryosu.cryosu.ui.theme.blurEffect
@@ -388,7 +385,6 @@ fun HomePage(
 
             // 链接卡片
             if (!uiState.isSimpleMode) {
-                DonateCard(uiState.showHomeCardIcons)
                 LearnMoreCard(uiState.showHomeCardIcons)
             }
 
@@ -614,44 +610,28 @@ private fun StatusCard(
                 else -> "Built-in"
             }
 
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.TaskAlt,
-                iconSize = 18.dp,
-                title = workingModeText,
-                description = stringResource(
-                    R.string.home_short_info,
-                    uiState.systemInfo.superuserCount,
-                    uiState.systemInfo.moduleCount,
-                ),
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                foreContent = {
-                    Spacer(Modifier.width(8.dp))
+            val chips = buildList {
+                add(workingModeSurfaceText)
+                if (systemStatus.isLateLoadMode) add(stringResource(id = R.string.jailbreak_mode))
+                if (Os.uname().machine != "aarch64") add(Os.uname().machine)
+            }
 
-                    // 工作模式标签
-                    LabelText(
-                        label = workingModeSurfaceText,
-                        containerColor = MaterialTheme.colorScheme.primary,
-                    )
-
-                    if (systemStatus.isLateLoadMode) {
-                        Spacer(Modifier.width(6.dp))
-                        LabelText(
-                            label = stringResource(id = R.string.jailbreak_mode),
-                            containerColor = MaterialTheme.colorScheme.primary,
-                        )
-                    }
-
-                    // 架构标签
-                    if (Os.uname().machine != "aarch64") {
-                        Spacer(Modifier.width(6.dp))
-                        LabelText(
-                            label = Os.uname().machine,
-                            containerColor = MaterialTheme.colorScheme.primary,
-                        )
-                    }
-                },
-                onClick = onClick,
-            )
+            Column(
+                modifier = Modifier.clickable { onClick(Offset.Zero) },
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                CryoStatusHero(
+                    title = workingModeText,
+                    subtitle = "CryoSU",
+                    chips = chips,
+                )
+                CryoStatTiles(
+                    leftLabel = stringResource(R.string.superuser),
+                    leftValue = uiState.systemInfo.superuserCount,
+                    rightLabel = stringResource(R.string.module),
+                    rightValue = uiState.systemInfo.moduleCount,
+                )
+            }
         }
 
         systemStatus.kernelVersion.isGKI() -> {
@@ -715,30 +695,6 @@ fun LearnMoreCard(
                 description = stringResource(R.string.home_click_to_learn_kernelsu),
                 onClick = {
                     uriHandler.openUri(url)
-                },
-            )
-        }
-    }
-}
-
-@Composable
-fun DonateCard(
-    showIcon: Boolean,
-) {
-    val uriHandler = LocalUriHandler.current
-    SegmentedColumn(
-        modifier = Modifier.fillMaxWidth(),
-        title = stringResource(R.string.home_support_title),
-        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 4.dp),
-    ) {
-        item {
-            SettingsBaseWidget(
-                icon = Icons.TwoTone.VolunteerActivism.takeIf { showIcon },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_support_title),
-                description = stringResource(R.string.home_support_content),
-                onClick = {
-                    uriHandler.openUri("https://patreon.com/weishu")
                 },
             )
         }
