@@ -14,9 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # Pin versi: format kernel/.clang-format dibuat untuk clang-format 18.
+      # clang-format bawaan ubuntu-latest bisa lebih baru dan memformat berbeda.
+      - name: Install clang-format 18
+        run: |
+          python3 -m pip install --user "clang-format==18.1.8"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
       - name: Check
         working-directory: kernel
-        run: make check-format
+        run: |
+          clang-format --version
+          make check-format
 
   rustfmt:
     name: Rustfmt check
