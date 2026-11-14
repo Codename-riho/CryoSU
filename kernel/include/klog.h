@@ -27,10 +27,10 @@
 #if defined(CONFIG_KSU_VERBOSE_LOGS) || defined(CONFIG_KSU_DEBUG)
 #define pr_info_sens(fmt, ...) pr_info(fmt, ##__VA_ARGS__)
 #else
-#define pr_info_sens(fmt, ...) \
-    do {                       \
-        if (0)                 \
-            pr_info(fmt, ##__VA_ARGS__); \
+#define pr_info_sens(fmt, ...)                                                                                         \
+    do {                                                                                                               \
+        if (0)                                                                                                         \
+            pr_info(fmt, ##__VA_ARGS__);                                                                               \
     } while (0)
 #endif
 

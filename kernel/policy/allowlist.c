@@ -247,10 +247,10 @@ int ksu_set_app_profile(struct app_profile *profile)
     memcpy(&np->profile, profile, sizeof(*profile));
     if (profile->allow_su) {
         pr_info_sens("set root profile, key: %s, uid: %d, gid: %d, context: %s\n", profile->key, profile->curr_uid,
-                profile->rp_config.profile.gid, profile->rp_config.profile.selinux_domain);
+                     profile->rp_config.profile.gid, profile->rp_config.profile.selinux_domain);
     } else {
         pr_info_sens("set app profile, key: %s, uid: %d, umount modules: %d\n", profile->key, profile->curr_uid,
-                profile->nrp_config.profile.umount_modules);
+                     profile->nrp_config.profile.umount_modules);
     }
 
     hash_add_rcu(allow_list, &np->list, np->profile.curr_uid);
@@ -492,7 +492,7 @@ void do_persistent_allow_list(void *unused)
     mutex_lock(&allowlist_mutex);
     hash_for_each (allow_list, i, p, list) {
         pr_info_sens("save allow list, name: %s uid :%d, allow: %d\n", p->profile.key, p->profile.curr_uid,
-                p->profile.allow_su);
+                     p->profile.allow_su);
 
         ksu_kernel_write_compat(fp, &p->profile, sizeof(p->profile), &off);
     }
