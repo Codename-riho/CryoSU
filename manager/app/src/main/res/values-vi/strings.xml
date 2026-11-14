@@ -670,4 +670,16 @@
     <plurals name="repo_module_count">
         <item quantity="other">%1$d module</item>
     </plurals>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Sảnh Vinh Danh</string>
+    <string name="honor_hall_summary">Các dự án và con người mà CryoSU dựa trên</string>
+    <string name="honor_hall_intro">CryoSU được xây dựng trên công sức của các dự án và con người dưới đây. Xin cảm ơn.</string>
+    <string name="honor_bakasu_desc">Nền tảng trình quản lý và cộng đồng</string>
+    <string name="honor_bakasu_github">Mã nguồn BakaSU</string>
+    <string name="honor_bakasu_telegram">Cộng đồng BakaSU trên Telegram</string>
+    <string name="honor_kernelsu_desc">Framework root mà dự án này kế thừa</string>
+    <string name="honor_kernelsu_github">Mã nguồn KernelSU</string>
+    <string name="honor_kernelsu_learn">Tìm hiểu cách KernelSU và các mô-đun hoạt động</string>
+    <string name="honor_shirkneko_desc">Tác giả của nhiều màn hình quản lý gốc</string>
+    <string name="honor_license_note">Thông báo bản quyền và giấy phép gốc được giữ trong các tệp nguồn, theo yêu cầu của GPL.</string>
 </resources>

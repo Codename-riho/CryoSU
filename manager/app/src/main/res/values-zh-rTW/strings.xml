@@ -542,4 +542,16 @@
     <string name="require_manager_version">需要更新管理工具</string>
     <string name="require_kernel_version">需要更新核心，點選開始安裝</string>
     <string name="require_kernel_version_gki">需要更新核心</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">榮譽殿堂</string>
+    <string name="honor_hall_summary">CryoSU 所依託的專案與人員</string>
+    <string name="honor_hall_intro">CryoSU 建立在以下專案與人員的成果之上，在此致謝。</string>
+    <string name="honor_bakasu_desc">管理器基礎與社群</string>
+    <string name="honor_bakasu_github">BakaSU 原始碼</string>
+    <string name="honor_bakasu_telegram">BakaSU 的 Telegram 社群</string>
+    <string name="honor_kernelsu_desc">本專案所源自的 root 框架</string>
+    <string name="honor_kernelsu_github">KernelSU 原始碼</string>
+    <string name="honor_kernelsu_learn">了解 KernelSU 與模組的運作原理</string>
+    <string name="honor_shirkneko_desc">多個原始管理器介面的作者</string>
+    <string name="honor_license_note">依照 GPL 的要求，原始版權與授權聲明保留在原始檔中。</string>
 </resources>

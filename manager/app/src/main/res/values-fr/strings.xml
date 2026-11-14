@@ -672,4 +672,16 @@
     <string name="settings_flash_card_background">Arrière-plan de la carte sur l\'écran de flashage</string>
     <string name="settings_flash_card_background_summary">Affiche un arrière-plan derrière le journal de flashage. Toujours appliqué lorsqu\'un arrière-plan personnalisé est configuré</string>
     <string name="feature_status_forced_summary">Cette fonctionnalité est imposée par la configuration de démarrage et ne peut être modifiée</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Hall d\'honneur</string>
+    <string name="honor_hall_summary">Les projets et personnes sur lesquels CryoSU s\'appuie</string>
+    <string name="honor_hall_intro">CryoSU repose sur le travail des projets et personnes ci-dessous. Merci.</string>
+    <string name="honor_bakasu_desc">Base du gestionnaire et communauté</string>
+    <string name="honor_bakasu_github">Code source de BakaSU</string>
+    <string name="honor_bakasu_telegram">Communauté BakaSU sur Telegram</string>
+    <string name="honor_kernelsu_desc">Le framework root dont ce projet est issu</string>
+    <string name="honor_kernelsu_github">Code source de KernelSU</string>
+    <string name="honor_kernelsu_learn">Découvrir le fonctionnement de KernelSU et des modules</string>
+    <string name="honor_shirkneko_desc">Auteur de plusieurs écrans d\'origine du gestionnaire</string>
+    <string name="honor_license_note">Les mentions de copyright et de licence d\'origine sont conservées dans les fichiers source, comme l\'exige la GPL.</string>
 </resources>

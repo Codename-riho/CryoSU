@@ -671,4 +671,16 @@
     <string name="settings_flash_card_background">Açılış ekranındaki kart arka planı</string>
     <string name="settings_flash_card_background_summary">Yanıp sönen günlüğün arkasına bir kart arka planı çizin. Özel bir arka plan ayarlandığında her zaman görünür durumda kalır.</string>
     <string name="feature_status_forced_summary">Bu özellik, önyükleme yapılandırması tarafından zorunlu kılınmıştır ve değiştirilemez.</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Şeref Salonu</string>
+    <string name="honor_hall_summary">CryoSU\'nun üzerine inşa edildiği projeler ve kişiler</string>
+    <string name="honor_hall_intro">CryoSU, aşağıdaki projelerin ve kişilerin emeğine dayanır. Teşekkürler.</string>
+    <string name="honor_bakasu_desc">Yönetici tabanı ve topluluk</string>
+    <string name="honor_bakasu_github">BakaSU kaynak kodu</string>
+    <string name="honor_bakasu_telegram">Telegram\'da BakaSU topluluğu</string>
+    <string name="honor_kernelsu_desc">Bu projenin türediği root çatısı</string>
+    <string name="honor_kernelsu_github">KernelSU kaynak kodu</string>
+    <string name="honor_kernelsu_learn">KernelSU ve modüllerin nasıl çalıştığını öğrenin</string>
+    <string name="honor_shirkneko_desc">Orijinal yönetici ekranlarının birkaçının yazarı</string>
+    <string name="honor_license_note">GPL gereği, orijinal telif hakkı ve lisans bildirimleri kaynak dosyalarda korunur.</string>
 </resources>

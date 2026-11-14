@@ -452,4 +452,16 @@
     <string name="kernel_flash_complete">Kernel flasheado</string>
     <string name="patch_complete">Parche completado</string>
     <string name="settings_flash_card_background">Fondo de tarjeta en la pantalla flash</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Salón de honor</string>
+    <string name="honor_hall_summary">Proyectos y personas sobre los que se construye CryoSU</string>
+    <string name="honor_hall_intro">CryoSU se apoya en el trabajo de los proyectos y personas siguientes. Gracias.</string>
+    <string name="honor_bakasu_desc">Base del gestor y comunidad</string>
+    <string name="honor_bakasu_github">Código fuente de BakaSU</string>
+    <string name="honor_bakasu_telegram">Comunidad de BakaSU en Telegram</string>
+    <string name="honor_kernelsu_desc">El framework root del que desciende este proyecto</string>
+    <string name="honor_kernelsu_github">Código fuente de KernelSU</string>
+    <string name="honor_kernelsu_learn">Aprende cómo funcionan KernelSU y los módulos</string>
+    <string name="honor_shirkneko_desc">Autor de varias pantallas originales del gestor</string>
+    <string name="honor_license_note">Los avisos originales de copyright y licencia se conservan en los archivos fuente, como exige la GPL.</string>
 </resources>

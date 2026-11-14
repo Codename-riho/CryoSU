@@ -671,4 +671,16 @@
     <string name="superuser_root_access_required">加载应用列表需要 Root 权限。</string>
     <string name="superuser_service_start_failed">RootService 启动失败，请重试以加载应用列表。</string>
     <string name="superuser_packages_load_failed">从 RootService 加载应用列表失败，请重试。</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">荣誉殿堂</string>
+    <string name="honor_hall_summary">CryoSU 所依托的项目与人员</string>
+    <string name="honor_hall_intro">CryoSU 建立在以下项目与人员的成果之上，在此致谢。</string>
+    <string name="honor_bakasu_desc">管理器基础与社区</string>
+    <string name="honor_bakasu_github">BakaSU 源代码</string>
+    <string name="honor_bakasu_telegram">BakaSU 的 Telegram 社区</string>
+    <string name="honor_kernelsu_desc">本项目所源自的 root 框架</string>
+    <string name="honor_kernelsu_github">KernelSU 源代码</string>
+    <string name="honor_kernelsu_learn">了解 KernelSU 与模块的工作原理</string>
+    <string name="honor_shirkneko_desc">多个原始管理器界面的作者</string>
+    <string name="honor_license_note">按照 GPL 的要求，原始版权与许可声明保留在源文件中。</string>
 </resources>

@@ -671,4 +671,16 @@
     <string name="superuser_root_access_required">অ্যাপ্লিকেশন লোড করতে রুট অ্যাক্সেস প্রয়োজন।</string>
     <string name="superuser_service_start_failed">RootService চালু হতে ব্যর্থ। অ্যাপ্লিকেশন লোড করতে আবার চেষ্টা করুন।</string>
     <string name="superuser_packages_load_failed">RootService থেকে অ্যাপ্লিকেশন লোড করতে ব্যর্থ। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">সম্মান কক্ষ</string>
+    <string name="honor_hall_summary">যেসব প্রকল্প ও মানুষের উপর CryoSU নির্মিত</string>
+    <string name="honor_hall_intro">CryoSU নিচের প্রকল্প ও মানুষদের কাজের উপর দাঁড়িয়ে আছে। ধন্যবাদ।</string>
+    <string name="honor_bakasu_desc">ম্যানেজারের ভিত্তি ও কমিউনিটি</string>
+    <string name="honor_bakasu_github">BakaSU সোর্স কোড</string>
+    <string name="honor_bakasu_telegram">টেলিগ্রামে BakaSU কমিউনিটি</string>
+    <string name="honor_kernelsu_desc">যে রুট ফ্রেমওয়ার্ক থেকে এই প্রকল্পের উৎপত্তি</string>
+    <string name="honor_kernelsu_github">KernelSU সোর্স কোড</string>
+    <string name="honor_kernelsu_learn">KernelSU ও মডিউল কীভাবে কাজ করে জানুন</string>
+    <string name="honor_shirkneko_desc">ম্যানেজারের বেশ কিছু মূল স্ক্রিনের লেখক</string>
+    <string name="honor_license_note">GPL অনুযায়ী মূল কপিরাইট ও লাইসেন্স নোটিশ সোর্স ফাইলে রাখা হয়েছে।</string>
 </resources>

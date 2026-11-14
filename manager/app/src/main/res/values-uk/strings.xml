@@ -665,4 +665,16 @@
     <string name="repo_module_author_value">Автор: %1$s</string>
     <string name="superuser_root_access_required">Для завантаження додатків потрібен root-доступ.</string>
     <string name="superuser_service_start_failed">Не вдалося запустити RootService. Повторіть спробу завантажити додатки.</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Зала слави</string>
+    <string name="honor_hall_summary">Проєкти та люди, на яких ґрунтується CryoSU</string>
+    <string name="honor_hall_intro">CryoSU спирається на роботу проєктів і людей, наведених нижче. Дякуємо.</string>
+    <string name="honor_bakasu_desc">Основа менеджера та спільнота</string>
+    <string name="honor_bakasu_github">Вихідний код BakaSU</string>
+    <string name="honor_bakasu_telegram">Спільнота BakaSU у Telegram</string>
+    <string name="honor_kernelsu_desc">Root-фреймворк, від якого походить цей проєкт</string>
+    <string name="honor_kernelsu_github">Вихідний код KernelSU</string>
+    <string name="honor_kernelsu_learn">Дізнайтеся, як працюють KernelSU і модулі</string>
+    <string name="honor_shirkneko_desc">Автор кількох оригінальних екранів менеджера</string>
+    <string name="honor_license_note">Оригінальні повідомлення про авторські права та ліцензію збережено у файлах вихідного коду, як цього вимагає GPL.</string>
 </resources>

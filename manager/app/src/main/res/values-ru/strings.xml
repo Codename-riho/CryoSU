@@ -673,4 +673,16 @@
     <string name="superuser_service_start_failed">Не удалось запустить RootService. Повторная попытка загрузки приложений.</string>
     <string name="superuser_packages_load_failed">Не удалось загрузить приложения из RootService. Пожалуйста, повторите попытку.</string>
     <string name="repo_api_mmrl">MMRL API</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Зал славы</string>
+    <string name="honor_hall_summary">Проекты и люди, на которых основан CryoSU</string>
+    <string name="honor_hall_intro">CryoSU опирается на работу проектов и людей, перечисленных ниже. Спасибо.</string>
+    <string name="honor_bakasu_desc">Основа менеджера и сообщество</string>
+    <string name="honor_bakasu_github">Исходный код BakaSU</string>
+    <string name="honor_bakasu_telegram">Сообщество BakaSU в Telegram</string>
+    <string name="honor_kernelsu_desc">Root-фреймворк, от которого произошёл этот проект</string>
+    <string name="honor_kernelsu_github">Исходный код KernelSU</string>
+    <string name="honor_kernelsu_learn">Узнайте, как работают KernelSU и модули</string>
+    <string name="honor_shirkneko_desc">Автор нескольких оригинальных экранов менеджера</string>
+    <string name="honor_license_note">Исходные уведомления об авторских правах и лицензии сохранены в файлах исходного кода, как того требует GPL.</string>
 </resources>

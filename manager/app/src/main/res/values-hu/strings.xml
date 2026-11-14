@@ -671,4 +671,16 @@
     <string name="repo_health_stale">Forráskönyvtár meta-adatok nem aktuálisak.</string>
     <string name="repo_no_releases">Nincs elérhető kiadás.</string>
     <string name="repo_download_progress">%1$s letöltése: %2$d%%</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Dicsőségfal</string>
+    <string name="honor_hall_summary">Projektek és emberek, amelyekre a CryoSU épül</string>
+    <string name="honor_hall_intro">A CryoSU az alábbi projektek és emberek munkájára épül. Köszönjük.</string>
+    <string name="honor_bakasu_desc">A kezelő alapja és közösség</string>
+    <string name="honor_bakasu_github">A BakaSU forráskódja</string>
+    <string name="honor_bakasu_telegram">A BakaSU közösség a Telegramon</string>
+    <string name="honor_kernelsu_desc">A root keretrendszer, amelyből ez a projekt származik</string>
+    <string name="honor_kernelsu_github">A KernelSU forráskódja</string>
+    <string name="honor_kernelsu_learn">Tudd meg, hogyan működik a KernelSU és a modulok</string>
+    <string name="honor_shirkneko_desc">A kezelő több eredeti képernyőjének szerzője</string>
+    <string name="honor_license_note">Az eredeti szerzői jogi és licencközlemények a forrásfájlokban megmaradnak, ahogy a GPL előírja.</string>
 </resources>

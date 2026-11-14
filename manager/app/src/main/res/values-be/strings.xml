@@ -555,4 +555,16 @@
     <string name="module_shortcut_copy_scheme">Капіяваць URL-схему</string>
     <string name="module_shortcut_scheme_copied">URL-схема скапіяваная</string>
     <string name="internal_server_error">Памылка сервера</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Зала славы</string>
+    <string name="honor_hall_summary">Праекты і людзі, на якіх пабудаваны CryoSU</string>
+    <string name="honor_hall_intro">CryoSU абапіраецца на працу праектаў і людзей, пералічаных ніжэй. Дзякуй.</string>
+    <string name="honor_bakasu_desc">Аснова менеджара і суполка</string>
+    <string name="honor_bakasu_github">Зыходны код BakaSU</string>
+    <string name="honor_bakasu_telegram">Суполка BakaSU ў Telegram</string>
+    <string name="honor_kernelsu_desc">Root-фрэймворк, ад якога паходзіць гэты праект</string>
+    <string name="honor_kernelsu_github">Зыходны код KernelSU</string>
+    <string name="honor_kernelsu_learn">Даведайцеся, як працуюць KernelSU і модулі</string>
+    <string name="honor_shirkneko_desc">Аўтар некалькіх арыгінальных экранаў менеджара</string>
+    <string name="honor_license_note">Першапачатковыя паведамленні пра аўтарскія правы і ліцэнзію захаваны ў файлах зыходнага кода, як таго патрабуе GPL.</string>
 </resources>

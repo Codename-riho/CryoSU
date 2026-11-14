@@ -553,4 +553,16 @@
     <string name="skip_ksud">Nie instaluj ksud</string>
     <string name="skip_ksud_summary">Anuluj instalację ksud. Nie włączaj tego chyba że jest to absolutnie konieczne.</string>
     <string name="install_force_backup">Utwórz kopię zapasową jako obraz fabryczny</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Aleja zasłużonych</string>
+    <string name="honor_hall_summary">Projekty i osoby, na których opiera się CryoSU</string>
+    <string name="honor_hall_intro">CryoSU opiera się na pracy projektów i osób wymienionych poniżej. Dziękujemy.</string>
+    <string name="honor_bakasu_desc">Podstawa menedżera i społeczność</string>
+    <string name="honor_bakasu_github">Kod źródłowy BakaSU</string>
+    <string name="honor_bakasu_telegram">Społeczność BakaSU na Telegramie</string>
+    <string name="honor_kernelsu_desc">Framework root, z którego wywodzi się ten projekt</string>
+    <string name="honor_kernelsu_github">Kod źródłowy KernelSU</string>
+    <string name="honor_kernelsu_learn">Dowiedz się, jak działają KernelSU i moduły</string>
+    <string name="honor_shirkneko_desc">Autor kilku oryginalnych ekranów menedżera</string>
+    <string name="honor_license_note">Oryginalne informacje o prawach autorskich i licencji pozostają w plikach źródłowych, zgodnie z wymogami GPL.</string>
 </resources>

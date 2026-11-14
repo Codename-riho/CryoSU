@@ -338,4 +338,16 @@
     <string name="module_shortcut_icon_pick">カスタムアイコンを選択</string>
     <string name="module_shortcut_delete">ショートカットを削除</string>
     <string name="module_shortcut_permission_tip_default">ショートカットの作成に失敗した場合は、システム設定でこのアプリに対してホーム画面ショートカットの権限を有効にしてください。</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">殿堂</string>
+    <string name="honor_hall_summary">CryoSU の土台となったプロジェクトと人々</string>
+    <string name="honor_hall_intro">CryoSU は以下のプロジェクトと人々の成果の上に成り立っています。ありがとうございます。</string>
+    <string name="honor_bakasu_desc">マネージャーの基盤とコミュニティ</string>
+    <string name="honor_bakasu_github">BakaSU のソースコード</string>
+    <string name="honor_bakasu_telegram">Telegram の BakaSU コミュニティ</string>
+    <string name="honor_kernelsu_desc">このプロジェクトの元となった root フレームワーク</string>
+    <string name="honor_kernelsu_github">KernelSU のソースコード</string>
+    <string name="honor_kernelsu_learn">KernelSU とモジュールの仕組みを学ぶ</string>
+    <string name="honor_shirkneko_desc">オリジナルのマネージャー画面を複数制作した作者</string>
+    <string name="honor_license_note">GPL の要件に従い、元の著作権表示とライセンス表示はソースファイルに残しています。</string>
 </resources>

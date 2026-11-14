@@ -543,4 +543,16 @@
     <string name="skip_ksud">Non installare ksud</string>
     <string name="home">Pagina Principale</string>
     <string name="sulog_filter_root_execve">Root execve</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Sala d\'onore</string>
+    <string name="honor_hall_summary">Progetti e persone su cui si basa CryoSU</string>
+    <string name="honor_hall_intro">CryoSU si basa sul lavoro dei progetti e delle persone qui sotto. Grazie.</string>
+    <string name="honor_bakasu_desc">Base del gestore e community</string>
+    <string name="honor_bakasu_github">Codice sorgente di BakaSU</string>
+    <string name="honor_bakasu_telegram">Community di BakaSU su Telegram</string>
+    <string name="honor_kernelsu_desc">Il framework root da cui discende questo progetto</string>
+    <string name="honor_kernelsu_github">Codice sorgente di KernelSU</string>
+    <string name="honor_kernelsu_learn">Scopri come funzionano KernelSU e i moduli</string>
+    <string name="honor_shirkneko_desc">Autore di diverse schermate originali del gestore</string>
+    <string name="honor_license_note">Le note originali di copyright e licenza sono mantenute nei file sorgente, come richiesto dalla GPL.</string>
 </resources>

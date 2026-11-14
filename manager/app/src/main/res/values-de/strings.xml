@@ -180,4 +180,16 @@
     <string name="require_manager_version">Manager-Update erforderlich.</string>
     <string name="require_kernel_version">Kernel-Update erforderlich. Zum Installieren tippen.</string>
     <string name="require_kernel_version_gki">Kernel-Update erforderlich.</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Ehrenhalle</string>
+    <string name="honor_hall_summary">Projekte und Personen, auf denen CryoSU aufbaut</string>
+    <string name="honor_hall_intro">CryoSU baut auf der Arbeit der folgenden Projekte und Personen auf. Danke.</string>
+    <string name="honor_bakasu_desc">Grundlage des Managers und Community</string>
+    <string name="honor_bakasu_github">BakaSU-Quellcode</string>
+    <string name="honor_bakasu_telegram">BakaSU-Community auf Telegram</string>
+    <string name="honor_kernelsu_desc">Das Root-Framework, von dem dieses Projekt abstammt</string>
+    <string name="honor_kernelsu_github">KernelSU-Quellcode</string>
+    <string name="honor_kernelsu_learn">Erfahre, wie KernelSU und Module funktionieren</string>
+    <string name="honor_shirkneko_desc">Autor mehrerer ursprünglicher Manager-Bildschirme</string>
+    <string name="honor_license_note">Die ursprünglichen Urheberrechts- und Lizenzhinweise bleiben in den Quelldateien erhalten, wie es die GPL verlangt.</string>
 </resources>

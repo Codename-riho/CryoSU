@@ -670,4 +670,16 @@
     <string name="settings_flash_card_background">Latar belakang kartu di layar flashing</string>
     <string name="settings_flash_card_background_summary">Tampilkan latar belakang kartu di balik log flashing. Selalu aktif saat latar belakang khusus digunakan</string>
     <string name="feature_status_forced_summary">Fitur ini ditetapkan oleh konfigurasi boot dan tidak dapat diubah</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Aula Kehormatan</string>
+    <string name="honor_hall_summary">Proyek dan orang-orang yang menjadi dasar CryoSU</string>
+    <string name="honor_hall_intro">CryoSU berdiri di atas karya proyek dan orang-orang di bawah ini. Terima kasih.</string>
+    <string name="honor_bakasu_desc">Basis manager dan komunitas</string>
+    <string name="honor_bakasu_github">Kode sumber BakaSU</string>
+    <string name="honor_bakasu_telegram">Komunitas BakaSU di Telegram</string>
+    <string name="honor_kernelsu_desc">Kerangka root tempat proyek ini berasal</string>
+    <string name="honor_kernelsu_github">Kode sumber KernelSU</string>
+    <string name="honor_kernelsu_learn">Pelajari cara kerja KernelSU dan modul</string>
+    <string name="honor_shirkneko_desc">Penulis beberapa layar manager asli</string>
+    <string name="honor_license_note">Pemberitahuan hak cipta dan lisensi asli dipertahankan di berkas sumber, sesuai persyaratan GPL.</string>
 </resources>

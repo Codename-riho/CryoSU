@@ -672,4 +672,16 @@
     <string name="superuser_root_access_required">É necessário acesso root para carregar aplicativos.</string>
     <string name="superuser_service_start_failed">O RootService não pôde ser iniciado. Tente carregar os aplicativos novamente.</string>
     <string name="superuser_packages_load_failed">Falha ao carregar os aplicativos do RootService. Tente novamente.</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">Hall da Fama</string>
+    <string name="honor_hall_summary">Projetos e pessoas nos quais o CryoSU se baseia</string>
+    <string name="honor_hall_intro">O CryoSU se apoia no trabalho dos projetos e pessoas abaixo. Obrigado.</string>
+    <string name="honor_bakasu_desc">Base do gerenciador e comunidade</string>
+    <string name="honor_bakasu_github">Código-fonte do BakaSU</string>
+    <string name="honor_bakasu_telegram">Comunidade do BakaSU no Telegram</string>
+    <string name="honor_kernelsu_desc">O framework root do qual este projeto descende</string>
+    <string name="honor_kernelsu_github">Código-fonte do KernelSU</string>
+    <string name="honor_kernelsu_learn">Saiba como o KernelSU e os módulos funcionam</string>
+    <string name="honor_shirkneko_desc">Autor de várias telas originais do gerenciador</string>
+    <string name="honor_license_note">Os avisos originais de direitos autorais e licença são mantidos nos arquivos de código-fonte, como a GPL exige.</string>
 </resources>

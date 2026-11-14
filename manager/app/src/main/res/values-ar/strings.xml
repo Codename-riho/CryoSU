@@ -675,4 +675,16 @@
     <string name="superuser_root_access_required">يلزم الحصول على صلاحيات الجذر (Root access) لتحميل التطبيقات.</string>
     <string name="superuser_service_start_failed">فشلت خدمة RootService في البدء. أعد المحاولة لتحميل التطبيقات.</string>
     <string name="superuser_packages_load_failed">تعذّر تحميل التطبيقات من RootService. يرجى المحاولة مجددًا.</string>
+    <!-- Honor Hall: drafted by Claude, not yet reviewed by a native speaker -->
+    <string name="honor_hall">قاعة الشرف</string>
+    <string name="honor_hall_summary">المشاريع والأشخاص الذين يقوم عليهم CryoSU</string>
+    <string name="honor_hall_intro">يقوم CryoSU على جهود المشاريع والأشخاص المذكورين أدناه. شكرًا لهم.</string>
+    <string name="honor_bakasu_desc">أساس المدير والمجتمع</string>
+    <string name="honor_bakasu_github">الشيفرة المصدرية لـ BakaSU</string>
+    <string name="honor_bakasu_telegram">مجتمع BakaSU على تيليجرام</string>
+    <string name="honor_kernelsu_desc">إطار الروت الذي انحدر منه هذا المشروع</string>
+    <string name="honor_kernelsu_github">الشيفرة المصدرية لـ KernelSU</string>
+    <string name="honor_kernelsu_learn">تعرّف على كيفية عمل KernelSU والوحدات</string>
+    <string name="honor_shirkneko_desc">مؤلف عدة شاشات أصلية في المدير</string>
+    <string name="honor_license_note">تم الاحتفاظ بإشعارات حقوق النشر والترخيص الأصلية في ملفات المصدر، كما تشترط رخصة GPL.</string>
 </resources>
