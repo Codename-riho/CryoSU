@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,11 +24,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.Article
 import androidx.compose.material.icons.automirrored.twotone.Undo
-import androidx.compose.material.icons.twotone.AcUnit
 import androidx.compose.material.icons.twotone.Adb
 import androidx.compose.material.icons.twotone.BugReport
 import androidx.compose.material.icons.twotone.Delete
@@ -37,7 +38,10 @@ import androidx.compose.material.icons.twotone.Extension
 import androidx.compose.material.icons.twotone.Fence
 import androidx.compose.material.icons.twotone.FolderDelete
 import androidx.compose.material.icons.twotone.FolderOff
+import androidx.compose.material.icons.twotone.Handyman
 import androidx.compose.material.icons.twotone.Info
+import androidx.compose.material.icons.twotone.Palette
+import androidx.compose.material.icons.twotone.PhoneAndroid
 import androidx.compose.material.icons.twotone.Policy
 import androidx.compose.material.icons.twotone.RemoveCircle
 import androidx.compose.material.icons.twotone.RemoveModerator
@@ -47,8 +51,11 @@ import androidx.compose.material.icons.twotone.Science
 import androidx.compose.material.icons.twotone.Security
 import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material.icons.twotone.Share
+import androidx.compose.material.icons.twotone.Tune
 import androidx.compose.material.icons.twotone.Update
 import androidx.compose.material.icons.twotone.VerifiedUser
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
@@ -91,7 +98,7 @@ import org.cryosu.cryosu.ui.component.ConfirmResult
 import org.cryosu.cryosu.ui.component.SwipeableSnackbarHost
 import org.cryosu.cryosu.ui.component.rememberConfirmDialog
 import org.cryosu.cryosu.ui.component.rememberLoadingDialog
-import org.cryosu.cryosu.ui.component.settings.SegmentedColumn
+import org.cryosu.cryosu.ui.component.settings.CryoSettingsGroup
 import org.cryosu.cryosu.ui.component.settings.SettingsBaseWidget
 import org.cryosu.cryosu.ui.component.settings.SettingsChooseWidget
 import org.cryosu.cryosu.ui.component.settings.SettingsJumpPageWidget
@@ -110,11 +117,6 @@ import org.cryosu.cryosu.ui.viewmodel.SettingsUiAction
 import org.cryosu.cryosu.ui.viewmodel.SettingsViewModel
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
-
-/**
- * @author ShirkNeko
- * @date 2025/9/29.
- */
 
 private val SPACING_MEDIUM = 8.dp
 private val SPACING_LARGE = 16.dp
@@ -183,11 +185,11 @@ fun SettingsPage(bottomPadding: Dp) {
             ),
         ) {
             item {
-                CryoPageBanner(
-                    icon = Icons.TwoTone.AcUnit,
-                    title = stringResource(R.string.app_name),
-                    subtitle = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                SettingsQuickActions(
+                    versionText = "CryoSU ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
+                    onTheme = { navigator.push(Route.ThemeSettings) },
+                    onLog = { showBottomsheet = true },
+                    onAbout = { navigator.push(Route.About) },
                 )
             }
 
@@ -200,8 +202,9 @@ fun SettingsPage(bottomPadding: Dp) {
                         stringResource(id = R.string.settings_mode_disable_always),
                     )
 
-                    SegmentedColumn(
+                    CryoSettingsGroup(
                         title = stringResource(R.string.configuration),
+                        icon = Icons.TwoTone.Tune,
                         content = {
                             item {
                                 // 配置文件模板入口
@@ -406,8 +409,9 @@ fun SettingsPage(bottomPadding: Dp) {
 
             item {
                 // 应用设置卡片
-                SegmentedColumn(
+                CryoSettingsGroup(
                     title = stringResource(R.string.app_settings),
+                    icon = Icons.TwoTone.PhoneAndroid,
                     content = {
                         expandableItem(
                             expanded = uiState.checkManagerUpdate,
@@ -479,8 +483,9 @@ fun SettingsPage(bottomPadding: Dp) {
 
             item {
                 // 工具卡片
-                SegmentedColumn(
+                CryoSettingsGroup(
                     title = stringResource(R.string.tools),
+                    icon = Icons.TwoTone.Handyman,
                     content = {
                         item {
                             SettingsBaseWidget(
@@ -532,7 +537,7 @@ fun SettingsPage(bottomPadding: Dp) {
                         onSaveLog = {
                             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH_mm")
                             val current = LocalDateTime.now().format(formatter)
-                            exportBugreportLauncher.launch("KernelSU_bugreport_$current.tar.gz")
+                            exportBugreportLauncher.launch("CryoSU_bugreport_$current.tar.gz")
                             showBottomsheet = false
                         },
                         onShareLog = {
@@ -571,8 +576,9 @@ fun SettingsPage(bottomPadding: Dp) {
 
             // 关于卡片
             item {
-                SegmentedColumn(
+                CryoSettingsGroup(
                     title = stringResource(R.string.about),
+                    icon = Icons.TwoTone.Info,
                     content = {
                         item {
                             SettingsJumpPageWidget(
@@ -588,6 +594,43 @@ fun SettingsPage(bottomPadding: Dp) {
             }
         }
     }
+}
+
+@Composable
+private fun SettingsQuickActions(
+    versionText: String,
+    onTheme: () -> Unit,
+    onLog: () -> Unit,
+    onAbout: () -> Unit,
+) {
+    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)) {
+        Text(
+            text = versionText,
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
+        )
+        Row(
+            modifier = Modifier.horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            QuickActionChip(Icons.TwoTone.Palette, stringResource(R.string.theme_settings), onTheme)
+            QuickActionChip(Icons.TwoTone.BugReport, stringResource(R.string.send_log), onLog)
+            QuickActionChip(Icons.TwoTone.Info, stringResource(R.string.about), onAbout)
+        }
+    }
+}
+
+@Composable
+private fun QuickActionChip(icon: ImageVector, label: String, onClick: () -> Unit) {
+    AssistChip(
+        onClick = onClick,
+        label = { Text(label) },
+        leadingIcon = {
+            Icon(imageVector = icon, contentDescription = null, modifier = Modifier.size(AssistChipDefaults.IconSize))
+        },
+        shape = CircleShape,
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
