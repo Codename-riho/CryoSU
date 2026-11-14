@@ -164,14 +164,17 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
 
       - name: Build APK
+        env:
+          # Opsional: variabel repo, isi dari `ksud debug get-sign <apk>` (mis. "size: 0x..., hash: ...")
+          ORG_GRADLE_PROJECT_cryosuOfficialSignature: ${{ vars.CRYOSU_OFFICIAL_SIGNATURE }}
         run: |
           export BUILD_EXTRA_ARGS=""
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            export KSU_PACKAGE_NAME="com.resukisu.resukisu.pr${{github.event.pull_request.number}}"
+            export KSU_PACKAGE_NAME="org.cryosu.cryosu.pr${{github.event.pull_request.number}}"
             export BUILD_EXTRA_ARGS="-PKSU_PACKAGE_NAME=$KSU_PACKAGE_NAME"
           elif [ "${{ github.ref_type }}" != "tag" ] && [ "${{ github.ref_name }}" != "main" ]; then
-            export KSU_PACKAGE_NAME="com.resukisu.resukisu.dev"
-            export KSU_NAME="BakaSU-DEV"
+            export KSU_PACKAGE_NAME="org.cryosu.cryosu.dev"
+            export KSU_NAME="CryoSU-DEV"
             export BUILD_EXTRA_ARGS="-PKSU_PACKAGE_NAME=$KSU_PACKAGE_NAME -PKSU_NAME=$KSU_NAME"
           fi
 

@@ -1,0 +1,13 @@
+package org.cryosu.cryosu.lint
+
+import com.android.tools.lint.client.api.IssueRegistry
+import com.android.tools.lint.detector.api.CURRENT_API
+
+class CryoSuIssueRegistry : IssueRegistry() {
+    override val issues = listOf(
+        SegmentedColumnScopeConditionDetector.ISSUE,
+        DirectHorizontalPagerDetector.ISSUE,
+    )
+
+    override val api = CURRENT_API
+}
