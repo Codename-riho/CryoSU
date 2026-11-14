@@ -1,0 +1,7 @@
+# Workspace for the Rust rewrite of the CryoSU manager.
+# Only std-only crates live here so `cargo test` works offline.
+# `cryo-app` (Android UI shell, has dependencies) is built separately.
+[workspace]
+members = ["cryo-core"]
+resolver = "2"
+exclude = ["cryo-app"]

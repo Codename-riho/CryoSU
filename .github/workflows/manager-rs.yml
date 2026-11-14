@@ -1,0 +1,44 @@
+name: Manager (Rust)
+
+on:
+  push:
+    branches: [cryo-rs]
+    paths: ["manager-rs/**", ".github/workflows/manager-rs.yml"]
+  pull_request:
+    paths: ["manager-rs/**", ".github/workflows/manager-rs.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    name: cryo-core (fmt, clippy, test)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: manager-rs
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup component add rustfmt clippy
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test
+
+  android:
+    name: cryo-app (Android arm64, experimental)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: manager-rs/cryo-app
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup target add aarch64-linux-android
+      - run: cargo install cargo-ndk --locked
+      - run: cargo ndk -t arm64-v8a build --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: libcryo_app
+          path: manager-rs/cryo-app/target/aarch64-linux-android/release/libcryo_app.so
+          if-no-files-found: ignore
