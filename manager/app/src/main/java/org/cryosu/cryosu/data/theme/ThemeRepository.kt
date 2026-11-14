@@ -53,7 +53,7 @@ class ThemeRepository(
         settings.putBoolean("use_dynamic_color", enabled)
     }
 
-    fun loadDynamicColorState(): Boolean = settings.getBoolean("use_dynamic_color", true)
+    fun loadDynamicColorState(): Boolean = settings.getBoolean("use_dynamic_color", false)
 
     fun saveDynamicColorSpec(
         spec: ColorSpec.SpecVersion,
