@@ -47,6 +47,9 @@ struct sdesc {
 };
 
 static apk_sign_key_t apk_sign_keys[] = {
+#if defined(EXPECTED_SIZE_CRYOSU) && defined(EXPECTED_HASH_CRYOSU)
+    { EXPECTED_SIZE_CRYOSU, EXPECTED_HASH_CRYOSU }, /* Codename-riho/CryoSU */
+#endif
     { EXPECTED_SIZE_BAKASU, EXPECTED_HASH_BAKASU }, /* Baka-SU/BakaSU */
 #ifdef CONFIG_KSU_MULTI_MANAGER_SUPPORT
     { EXPECTED_SIZE_OFFICIAL, EXPECTED_HASH_OFFICIAL }, // tiann/KernelSU
@@ -176,13 +179,31 @@ static bool check_block(struct file *fp, loff_t *pos, loff_t block_end, u8 *matc
     // 254 reserved for ksu debug
     // 253 reserved for ksu toolkit
     BUILD_BUG_ON(ARRAY_SIZE(apk_sign_keys) >= 253);
-    for (i = 0; i < ARRAY_SIZE(apk_sign_keys); i++) {
-        sign_key = apk_sign_keys[i];
-        if (certificate_size == sign_key.size && ksu_sign_hash_equal(sign_key.sha256, hash_str)) {
+    /*
+     * Hardening (timing side-channel): setiap entri selalu diperiksa penuh,
+     * tanpa `break` dan tanpa melewati pembandingan hash saat ukuran tidak
+     * cocok. Waktu eksekusi tidak lagi bergantung pada kunci mana yang cocok
+     * atau di posisi ke berapa. Indeks dipilih lewat mask, bukan cabang.
+     */
+    {
+        u32 found = 0;
+        u32 idx = 0;
+
+        for (i = 0; i < ARRAY_SIZE(apk_sign_keys); i++) {
+            u32 size_ok, hash_ok, hit, mask;
+
+            sign_key = apk_sign_keys[i];
+            size_ok = (certificate_size ^ sign_key.size) == 0;
+            hash_ok = ksu_sign_hash_equal(sign_key.sha256, hash_str);
+            hit = size_ok & hash_ok & (found ^ 1);
+            mask = 0U - hit;
+            idx = (idx & ~mask) | ((u32)i & mask);
+            found |= hit;
+        }
+        if (found) {
             if (matched_index)
-                *matched_index = i;
+                *matched_index = (u8)idx;
             signature_valid = true;
-            break;
         }
     }
 

@@ -225,6 +225,19 @@ ifneq ($(CONFIG_KSU),)
 include $(KSU_SRC)/tools/code_generation/code_generation.mk
 endif
 
+# Kunci rilis resmi CryoSU (format `ksud debug get-sign <apk>`: size 0x..., hash sha256 hex)
+ifdef KSU_CRYOSU_SIZE
+  ifdef KSU_CRYOSU_HASH
+ccflags-y += -DEXPECTED_SIZE_CRYOSU=$(KSU_CRYOSU_SIZE)
+ccflags-y += -DEXPECTED_HASH_CRYOSU=\"$(KSU_CRYOSU_HASH)\"
+$(info -- CryoSU manager signature: $(KSU_CRYOSU_SIZE) $(KSU_CRYOSU_HASH))
+  else
+$(error KSU_CRYOSU_SIZE ditetapkan tetapi KSU_CRYOSU_HASH kosong)
+  endif
+else ifdef KSU_CRYOSU_HASH
+$(error KSU_CRYOSU_HASH ditetapkan tetapi KSU_CRYOSU_SIZE kosong)
+endif
+
 # Custom Signs
 ifdef KSU_EXPECTED_SIZE
 ccflags-y += -DEXPECTED_SIZE=$(KSU_EXPECTED_SIZE)
