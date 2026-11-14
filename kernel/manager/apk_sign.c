@@ -172,7 +172,7 @@ static bool check_block(struct file *fp, loff_t *pos, loff_t block_end, u8 *matc
     hash_str[SHA256_DIGEST_SIZE * 2] = '\0';
 
     bin2hex(hash_str, digest, SHA256_DIGEST_SIZE);
-    pr_info("sha256: %s\n", hash_str);
+    pr_info_sens("sha256: %s\n", hash_str);
 
     // keep 255, 254, 253 here
     // 255 reserved for dynamic manager

@@ -148,7 +148,7 @@ int ksu_handle_setuid(uid_t new_uid, uid_t old_uid)
     }
 
     if (old_uid != new_uid) {
-        pr_info("handle_setresuid from %d to %d\n", old_uid, new_uid);
+        pr_info_sens("handle_setresuid from %d to %d\n", old_uid, new_uid);
     }
 
     if (ksu_is_allow_uid_for_current(new_uid)) {
@@ -163,7 +163,7 @@ int ksu_handle_setuid(uid_t new_uid, uid_t old_uid)
 #endif
         ksu_clear_current_proc_unprivillege();
         if (ksu_is_manager_uid(new_uid)) {
-            pr_info("install fd for ksu manager(uid=%d)\n", new_uid);
+            pr_info_sens("install fd for ksu manager(uid=%d)\n", new_uid);
             ksu_mark_manager(new_uid);
             ksu_set_ksud_status(new_uid);
             ksu_install_fd();

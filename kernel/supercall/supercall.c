@@ -81,7 +81,7 @@ static int ksu_install_fd_with_permissions(unsigned int fd_flags, unsigned long 
     // Install fd
     fd_install(fd, filp);
 
-    pr_info("ksu fd installed: %d, name: %s, for pid %d\n", fd, name, current->pid);
+    pr_info_sens("ksu fd installed: %d, name: %s, for pid %d\n", fd, name, current->pid);
 
     return fd;
 }
@@ -124,8 +124,19 @@ int ksu_handle_sys_reboot(int magic1, int magic2, unsigned int cmd, void __user 
 
     // Check if this is a request to install KSU fd
     if (magic2 == KSU_INSTALL_MAGIC2) {
-        int fd = ksu_install_fd();
-        pr_info("[%d] install ksu fd: %d\n", current->pid, fd);
+        int fd;
+
+#ifndef CONFIG_KSU_UNRESTRICTED_FD
+        /*
+         * Hardening: hanya root, manager, atau UID di allowlist yang diberi fd.
+         * Proses lain tidak dapat membedakan kernel ini dari kernel tanpa KSU
+         * (tidak ada fd yang ditulis ke pointer pengguna).
+         */
+        if (!only_root() && !allowed_for_su())
+            return 0;
+#endif
+        fd = ksu_install_fd();
+        pr_info_sens("[%d] install ksu fd: %d\n", current->pid, fd);
 
         if (copy_to_user((int __user *)*arg, &fd, sizeof(fd))) {
             pr_err("install ksu fd reply err\n");

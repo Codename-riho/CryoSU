@@ -42,7 +42,7 @@ static void crown_manager(const char *apk, struct list_head *uid_data, u8 signat
 
     list_for_each_entry (np, uid_data, list) {
         if (strncmp(np->package, pkg, KSU_MAX_PACKAGE_NAME) == 0) {
-            pr_info("Crowning manager: %s uid=%d, signature_index=%d\n", pkg, np->uid, signature_index);
+            pr_info_sens("Crowning manager: %s uid=%d, signature_index=%d\n", pkg, np->uid, signature_index);
 
             ksu_register_manager(np->uid, signature_index);
             break;

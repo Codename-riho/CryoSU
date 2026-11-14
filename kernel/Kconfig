@@ -15,6 +15,25 @@ config KSU_DEBUG
 	  help
 		Enable KernelSU debug mode.
 
+config KSU_VERBOSE_LOGS
+	  bool "KernelSU verbose logs (identity-revealing)"
+	  depends on KSU
+	  default n
+	  help
+		Print logs that reveal manager package/uid, certificate hash, and
+		allowlist uids to dmesg (e.g. "Crowning manager"). Off by default
+		to reduce information exposed to anything that can read dmesg.
+		Enable only for debugging.
+
+config KSU_UNRESTRICTED_FD
+	  bool "Let any process obtain a KernelSU fd (disable hardening)"
+	  depends on KSU
+	  default n
+	  help
+		By default only root, the manager, and allowlisted uids can obtain
+		a KernelSU fd through the reboot magic. Enable this only if an app
+		must query the driver before being allowed su.
+
 config KSU_TOOLKIT_SUPPORT
       bool "KernelSU toolkit support"
       depends on KSU

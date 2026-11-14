@@ -18,4 +18,20 @@
 #define pr_fmt(fmt) "KernelSU: " fmt
 #endif
 
+/*
+ * Log yang membocorkan identitas manager / UID / hash sertifikat / PID.
+ * Default: DIHILANGKAN (hardening, mengurangi data yang terbaca lewat dmesg).
+ * Aktifkan lagi untuk debugging dengan CONFIG_KSU_VERBOSE_LOGS=y atau
+ * CONFIG_KSU_DEBUG=y. Argumen tetap diperiksa kompiler (if (0)).
+ */
+#if defined(CONFIG_KSU_VERBOSE_LOGS) || defined(CONFIG_KSU_DEBUG)
+#define pr_info_sens(fmt, ...) pr_info(fmt, ##__VA_ARGS__)
+#else
+#define pr_info_sens(fmt, ...) \
+    do {                       \
+        if (0)                 \
+            pr_info(fmt, ##__VA_ARGS__); \
+    } while (0)
+#endif
+
 #endif
