@@ -6,7 +6,7 @@
     <string name="home_click_to_install">Click to install</string>
     <string name="home_working">Working</string>
     <string name="home_unsupported">Unsupported</string>
-    <string name="home_unsupported_reason">No KernelSU driver detected on your kernel, wrong kernel?</string>
+    <string name="home_unsupported_reason">No CryoSU driver detected on your kernel, wrong kernel?</string>
     <string name="home_kernel">Kernel Version</string>
     <string name="home_susfs_version">SuSFS Version</string>
     <string name="home_manager_version">Manager Version</string>
@@ -89,7 +89,7 @@
     <string name="settings_adb_root" translatable="false">ADB Root</string>
     <string name="settings_adb_root_summary">Run adbd daemon with root privileges</string>
     <string name="settings_shell_su_adb_only">Restrict shell root to ADB</string>
-    <string name="settings_shell_su_adb_only_summary">Enable additional checks for shells: Only shell processes initiated by adbd or a KernelSU root process can obtain root access</string>
+    <string name="settings_shell_su_adb_only_summary">Enable additional checks for shells: Only shell processes initiated by adbd or a CryoSU root process can obtain root access</string>
     <string name="settings_selinux_hide">Hide SELinux modification</string>
     <string name="settings_selinux_hide_summary">Prevent applications from detecting SELinux modifications</string>
     <string name="settings_selinux_hide_reboot_required">Reboot to take effect</string>
@@ -112,7 +112,7 @@
     <string name="profile_groups">Groups</string>
     <string name="profile_capabilities">Capabilities</string>
     <string name="profile_flags">Flags</string>
-    <string name="profile_flags_desc_no_new_privs">Prevent further privilege escalation via KernelSU from within the context of this root profile.</string>
+    <string name="profile_flags_desc_no_new_privs">Prevent further privilege escalation via CryoSU from within the context of this root profile.</string>
     <string name="profile_selinux_context">SELinux context</string>
     <string name="profile_umount_modules">Umount modules</string>
     <string name="failed_to_update_app_profile">Failed to update App Profile for %s</string>
@@ -121,7 +121,7 @@
     <string name="conflict_with_apatch">Detected APatch, everything might stop working.</string>
     <string name="settings_umount_modules_default">Umount modules by default</string>
     <string name="settings_umount_modules_default_summary">The global default value for \"Umount modules\" in App Profile. If enabled, it will remove all module modifications to the system for apps that don\'t have a profile set</string>
-    <string name="profile_umount_modules_summary">Enabling this option will allow KernelSU to restore any modified files by the modules for this app</string>
+    <string name="profile_umount_modules_summary">Enabling this option will allow CryoSU to restore any modified files by the modules for this app</string>
     <string name="profile_selinux_domain">Domain</string>
     <string name="profile_selinux_rules">Rules</string>
     <string name="module_update">Update</string>
@@ -187,9 +187,9 @@
     <string name="settings_uninstall_temporary">Uninstall temporarily</string>
     <string name="settings_uninstall_permanent">Uninstall permanently</string>
     <string name="settings_restore_stock_image">Restore stock image</string>
-    <string name="settings_uninstall_temporary_message">Temporarily uninstall KernelSU, restore to original state after next reboot</string>
-    <string name="settings_uninstall_permanent_message">Uninstalling KernelSU (root and all modules) completely and permanently</string>
-    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall KernelSU, please use \"Uninstall permanently\"</string>
+    <string name="settings_uninstall_temporary_message">Temporarily uninstall CryoSU, restore to original state after next reboot</string>
+    <string name="settings_uninstall_permanent_message">Uninstalling CryoSU (root and all modules) completely and permanently</string>
+    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall CryoSU, please use \"Uninstall permanently\"</string>
     <string name="flashing">Flashing</string>
     <string name="flash_success">Flash success</string>
     <string name="flash_failed">Flash failed</string>
@@ -243,7 +243,7 @@
     <string name="settings_mode_disable_until_reboot">Disable until Reboot</string>
     <string name="settings_mode_disable_always">Always disable</string>
     <string name="settings_sulog">SU Log</string>
-    <string name="settings_sulog_summary">Record root-related events into KernelSU sulog files.</string>
+    <string name="settings_sulog_summary">Record root-related events into CryoSU sulog files.</string>
     <string name="feature_status_managed_summary">This feature is managed by a module</string>
     <string name="feature_status_forced_summary">This feature is forced by boot configuration and cannot be changed</string>
     <string name="settings_mode_default">Default</string>
@@ -675,4 +675,18 @@
     <string name="superuser_root_access_required">Root access is required to load applications.</string>
     <string name="superuser_service_start_failed">RootService failed to start. Retry to load applications.</string>
     <string name="superuser_packages_load_failed">Failed to load applications from RootService. Please retry.</string>
+    <string name="honor_hall">Honor Hall</string>
+    <string name="honor_hall_summary">Projects and people CryoSU builds on</string>
+    <string name="honor_hall_intro">CryoSU stands on the work of the projects and people below. Thank you.</string>
+    <string name="honor_bakasu_title">BakaSU</string>
+    <string name="honor_bakasu_desc">Manager base and community</string>
+    <string name="honor_bakasu_github">BakaSU source code</string>
+    <string name="honor_bakasu_telegram">BakaSU community on Telegram</string>
+    <string name="honor_kernelsu_title">KernelSU</string>
+    <string name="honor_kernelsu_desc">The root framework this project descends from</string>
+    <string name="honor_kernelsu_github">KernelSU source code</string>
+    <string name="honor_kernelsu_learn">Learn how KernelSU and modules work</string>
+    <string name="honor_shirkneko_title">ShirkNeko</string>
+    <string name="honor_shirkneko_desc">Author of several original manager screens</string>
+    <string name="honor_license_note">Original copyright and license notices are kept in the source files, as the GPL requires.</string>
 </resources>

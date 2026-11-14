@@ -3,7 +3,6 @@ package org.cryosu.cryosu.ui.screen.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -34,6 +33,7 @@ import androidx.compose.material.icons.twotone.BugReport
 import androidx.compose.material.icons.twotone.Delete
 import androidx.compose.material.icons.twotone.DeleteForever
 import androidx.compose.material.icons.twotone.ElectricalServices
+import androidx.compose.material.icons.twotone.EmojiEvents
 import androidx.compose.material.icons.twotone.Extension
 import androidx.compose.material.icons.twotone.Fence
 import androidx.compose.material.icons.twotone.FolderDelete
@@ -580,6 +580,16 @@ fun SettingsPage(bottomPadding: Dp) {
                     title = stringResource(R.string.about),
                     icon = Icons.TwoTone.Info,
                     content = {
+                        item {
+                            SettingsJumpPageWidget(
+                                icon = Icons.TwoTone.EmojiEvents,
+                                title = stringResource(R.string.honor_hall),
+                                description = stringResource(R.string.honor_hall_summary),
+                                onClick = {
+                                    navigator.push(Route.HonorHall)
+                                },
+                            )
+                        }
                         item {
                             SettingsJumpPageWidget(
                                 icon = Icons.TwoTone.Info,

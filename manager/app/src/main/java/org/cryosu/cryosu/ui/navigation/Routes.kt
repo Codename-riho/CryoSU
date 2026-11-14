@@ -20,6 +20,10 @@ sealed interface Route :
 
     @Parcelize
     @Serializable
+    data object HonorHall : Route
+
+    @Parcelize
+    @Serializable
     data object OpenSourceLicense : Route
 
     @Parcelize

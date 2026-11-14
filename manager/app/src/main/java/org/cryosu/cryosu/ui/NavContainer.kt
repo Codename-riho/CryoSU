@@ -88,6 +88,7 @@ import org.cryosu.cryosu.ui.screen.SulogScreen
 import org.cryosu.cryosu.ui.screen.TemplateEditorScreen
 import org.cryosu.cryosu.ui.screen.UmountManagerScreen
 import org.cryosu.cryosu.ui.screen.about.AboutScreen
+import org.cryosu.cryosu.ui.screen.about.HonorHallScreen
 import org.cryosu.cryosu.ui.screen.about.OpenSourceLicenseScreen
 import org.cryosu.cryosu.ui.screen.kernelFlash.KernelFlashScreen
 import org.cryosu.cryosu.ui.screen.main.MainScreen
@@ -344,6 +345,17 @@ fun NavContainer(
                     useBlur = useBlur,
                 ) {
                     AboutScreen()
+                }
+            }
+            entry<Route.HonorHall>(swipeDismiss = swipeBackDirection) {
+                ManagerNavEntry(
+                    interceptPredictiveBack = interceptPredictiveBack,
+                    onBack = onBack,
+                    themeConfig = themeConfig,
+                    backgroundRenderState = backgroundRenderState,
+                    useBlur = useBlur,
+                ) {
+                    HonorHallScreen()
                 }
             }
             entry<Route.OpenSourceLicense>(swipeDismiss = swipeBackDirection) {

@@ -15,19 +15,16 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.twotone.MenuBook
 import androidx.compose.material.icons.twotone.Android
 import androidx.compose.material.icons.twotone.Block
 import androidx.compose.material.icons.twotone.DeveloperBoard
@@ -73,7 +70,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -97,7 +93,6 @@ import org.cryosu.cryosu.ui.component.SwipeableSnackbarHost
 import org.cryosu.cryosu.ui.component.WarningCard
 import org.cryosu.cryosu.ui.component.rememberConfirmDialog
 import org.cryosu.cryosu.ui.component.rememberLoadingDialog
-import org.cryosu.cryosu.ui.component.settings.SegmentedColumn
 import org.cryosu.cryosu.ui.component.settings.SettingsBaseWidget
 import org.cryosu.cryosu.ui.navigation.LocalNavigator
 import org.cryosu.cryosu.ui.navigation.Route
@@ -382,11 +377,6 @@ fun HomePage(
                     isSimpleMode = uiState.isSimpleMode,
                     showHomeCardIcons = uiState.showHomeCardIcons,
                 )
-            }
-
-            // 链接卡片
-            if (!uiState.isSimpleMode) {
-                LearnMoreCard(uiState.showHomeCardIcons)
             }
 
             Spacer(Modifier.height(bottomPadding))
@@ -683,32 +673,6 @@ private fun StatusCard(
                 isError = true,
                 title = stringResource(R.string.home_unsupported),
                 description = stringResource(R.string.home_unsupported_reason),
-            )
-        }
-    }
-}
-
-@Composable
-fun LearnMoreCard(
-    showIcon: Boolean,
-) {
-    val uriHandler = LocalUriHandler.current
-    val url = stringResource(R.string.home_learn_kernelsu_url)
-
-    SegmentedColumn(
-        modifier = Modifier.fillMaxWidth(),
-        title = stringResource(R.string.learn_more),
-        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 4.dp),
-    ) {
-        item {
-            SettingsBaseWidget(
-                icon = Icons.AutoMirrored.TwoTone.MenuBook.takeIf { showIcon },
-                iconPlaceholder = false,
-                title = stringResource(R.string.home_learn_kernelsu),
-                description = stringResource(R.string.home_click_to_learn_kernelsu),
-                onClick = {
-                    uriHandler.openUri(url)
-                },
             )
         }
     }
