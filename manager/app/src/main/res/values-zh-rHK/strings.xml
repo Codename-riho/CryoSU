@@ -547,4 +547,7 @@
     <string name="require_manager_version">需要更新管理器</string>
     <string name="require_kernel_version">需要更新內核。撳一下嚟安裝。</string>
     <string name="require_kernel_version_gki">需要更新內核</string>
+    <string name="settings_shell_su_adb_only">限制 Shell 僅可透過 ADB 取得 Root</string>
+    <string name="module_shortcut_copy_scheme">複製 URL scheme</string>
+    <string name="module_shortcut_scheme_copied">已複製 URL scheme</string>
 </resources>

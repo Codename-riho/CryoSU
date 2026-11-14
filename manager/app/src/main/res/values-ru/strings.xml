@@ -128,7 +128,7 @@
     <string name="settings_profile_template_summary">Управление локальным и онлайн-шаблоном профиля приложения</string>
     <string name="app_profile_template_create">Создать шаблон</string>
     <string name="app_profile_template_edit">Редактирование шаблона</string>
-    <string name="app_profile_template_id">ID</string>
+    <string name="app_profile_template_id">Идентификационный номер</string>
     <string name="app_profile_template_id_invalid">Неверный ID шаблона</string>
     <string name="app_profile_template_name">Название</string>
     <string name="app_profile_template_description">Описание</string>

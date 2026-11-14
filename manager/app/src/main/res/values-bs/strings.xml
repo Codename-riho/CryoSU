@@ -70,4 +70,15 @@
     <string name="settings_sucompat_summary">Preusmjeri /system/bin/su na ksud za aplikacije kojima je dodijeljeno dopuštenje Superuser u Profilu aplikacije; učinkovito samo za nove procese.</string>
     <string name="settings_kernel_umount">Kernel umount</string>
     <string name="settings_kernel_umount_summary">Ponašanje umount na razini kernela kontrolira KernelSU</string>
+    <string name="profile_namespace">Imenski prostor nosača</string>
+    <string name="profile_namespace_inherited">Naslijeđen</string>
+    <string name="profile_namespace_global">Globalan</string>
+    <string name="profile_namespace_individual">Pojedinačan</string>
+    <string name="install_force_backup">Napravi sigurnosnu kopiju kao fabričku sliku</string>
+    <string name="install_force_backup_summary">Uvjerite se da je odabrana boot slika fabrička slika</string>
+    <string name="save_log">Sačuvaj Dnevnike</string>
+    <string name="confirm">Potvrdi</string>
+    <string name="require_manager_version">Potrebno je ažurirati upravitelj.</string>
+    <string name="require_kernel_version">Potrebno je ažurirati kernel. Dodirnite za instaliranje.</string>
+    <string name="require_kernel_version_gki">Potrebno je ažurirati kernel.</string>
 </resources>

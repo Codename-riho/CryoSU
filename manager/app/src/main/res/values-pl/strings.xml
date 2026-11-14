@@ -552,4 +552,5 @@
     <string name="install_upload_lkm_file_summary">Użyj niestandardowego pliku .ko zamiast wbudowanego LKM</string>
     <string name="skip_ksud">Nie instaluj ksud</string>
     <string name="skip_ksud_summary">Anuluj instalację ksud. Nie włączaj tego chyba że jest to absolutnie konieczne.</string>
+    <string name="install_force_backup">Utwórz kopię zapasową jako obraz fabryczny</string>
 </resources>

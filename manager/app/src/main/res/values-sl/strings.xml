@@ -86,4 +86,13 @@
     <string name="settings_sucompat_summary">Preusmeri /system/bin/su na ksud za aplikacije z dovoljenjem Superuporabnika v profilu aplikacije; velja samo za nove procese.</string>
     <string name="settings_kernel_umount">Jedrno odklapljanje</string>
     <string name="settings_kernel_umount_summary">Vedenje odklapljanja na ravni jedra, ki ga nadzoruje KernelSU</string>
+    <string name="profile_namespace">Imenski prostor vmestitve</string>
+    <string name="profile_namespace_inherited">Podedovano</string>
+    <string name="profile_namespace_global">Globalno</string>
+    <string name="profile_namespace_individual">Pozameznik</string>
+    <string name="install_force_backup">Varnostno kopiraj kot izvorno sliko</string>
+    <string name="install_force_backup_summary">Prepričajte se, da je izbrana boot slika izvorna slika</string>
+    <string name="require_manager_version">Potrebna je posodobitev upravitelja.</string>
+    <string name="require_kernel_version">Potrebna je posodobitev jedra. Tapnite za namestitev.</string>
+    <string name="require_kernel_version_gki">Potrebna je posodobitev jedra.</string>
 </resources>

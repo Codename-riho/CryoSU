@@ -287,15 +287,15 @@
     <string name="settings_selinux_hide_summary">Cegah aplikasi mendeteksi modifikasi SELinux</string>
     <string name="settings_selinux_hide_reboot_required">Mulai ulang untuk menerapkan perubahan</string>
     <string name="settings_selinux_hide_failed">Eror: %d</string>
-    <string name="profile_namespace">Mount namespace</string>
-    <string name="profile_namespace_inherited">Inherited</string>
+    <string name="profile_namespace">Ruang nama mount</string>
+    <string name="profile_namespace_inherited">Diwarisi</string>
     <string name="profile_namespace_global">Global</string>
     <string name="profile_namespace_individual">Individual</string>
     <string name="profile_flags">Flag</string>
     <string name="profile_flags_desc_no_new_privs">Cegah peningkatan hak akses lebih lanjut melalui KernelSU dari dalam konteks profil root ini.</string>
     <string name="debug_version_notice">Anda sedang menggunakan build DEBUG dari manajer. Jika Anda tidak tahu apa itu versi DEBUG, segera beralih ke build RELEASE</string>
     <string name="unofficial_version_notice">Manajer yang Anda gunakan tidak resmi %s, mungkin izin akses tidak akan diberikan.</string>
-    <string name="sulog_filter_root_execve">Root execve</string>
+    <string name="sulog_filter_root_execve">Eksekusi root</string>
     <string name="conflict_with_apatch">APatch terdeteksi, semua fungsi mungkin akan berhenti bekerja.</string>
     <string name="module_action_success">Tindakan modul berhasil dijalankan.</string>
     <string name="manage_app_profile">Kelola Template Profil Aplikasi</string>
@@ -545,7 +545,7 @@
     <string name="skip_ksud_summary">Batalkan instalasi ksud. Jangan aktifkan ini kecuali benar-benar diperlukan.</string>
     <string name="settings_enable_swipe_dismiss_summary">Geser dari tepi layar untuk kembali ke halaman sebelumnya.</string>
     <string name="settings_pager_gesture_mode">Mode gestur pager</string>
-    <string name="settings_pager_gesture_native">Default</string>
+    <string name="settings_pager_gesture_native">Bawaan</string>
     <string name="settings_pager_gesture_ios_like">Seperti iOS</string>
     <string name="settings_enable_swipe_dismiss">Gestur geser untuk kembali</string>
     <string name="settings_pager_gesture_cross_axis">Lintas sumbu</string>

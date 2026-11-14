@@ -104,4 +104,20 @@
     <string name="settings_sucompat_summary">Stelt apps met Superuser-toestemming in App Profiel in staat om een superuser-shell te verkrijgen door /system/bin/su uit te voeren; alleen effectief voor nieuwe processen.</string>
     <string name="settings_kernel_umount">Kernel ontkoppelen</string>
     <string name="settings_kernel_umount_summary">Kernel-niveau ontkoppelgedrag beheerd door KernelSU</string>
+    <string name="profile_namespace">Koppel naamruimte</string>
+    <string name="profile_namespace_inherited">Overgenomen</string>
+    <string name="profile_namespace_global">Globaal</string>
+    <string name="profile_namespace_individual">Individuëel</string>
+    <string name="module_action_success">Moduleactie succesvol uitgevoerd.</string>
+    <string name="install_select_partition">Selecteer partitie</string>
+    <string name="install_upload_lkm_file">Gebruik lokaal LKM-bestand</string>
+    <string name="install_only_support_ko_file">Alleen .ko bestanden worden ondersteund</string>
+    <string name="install_force_backup">Back-up maken als origineel image</string>
+    <string name="install_force_backup_summary">Zorg ervoor dat de geselecteerde boot-image het originele image is</string>
+    <string name="confirm">Bevestigen</string>
+    <string name="feature_status_unsupported_summary">De kernel ondersteunt deze functie niet</string>
+    <string name="feature_status_managed_summary">Deze functie wordt beheerd door een module</string>
+    <string name="require_manager_version">Managerupdate vereist.</string>
+    <string name="require_kernel_version">Kernelupdate vereist. Tik om te installeren.</string>
+    <string name="require_kernel_version_gki">Kernelupdate vereist.</string>
 </resources>

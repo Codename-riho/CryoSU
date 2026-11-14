@@ -197,4 +197,23 @@
     <string name="theme_dark">มืด</string>
     <string name="dynamic_color_title">สีแบบไดนามิก</string>
     <string name="failed_reboot">ไม่สามารถรีบูทได้</string>
+    <string name="profile_namespace">Mount เนมสเปซ</string>
+    <string name="profile_namespace_inherited">สืบทอด</string>
+    <string name="profile_namespace_global">ทั่วไป</string>
+    <string name="profile_namespace_individual">ส่วนบุคคล</string>
+    <string name="module_action_success">การดำเนินการของโมดูลเสร็จสิ้น</string>
+    <string name="install_select_partition">เลือกพาร์ทิชัน</string>
+    <string name="install_force_backup">สำรองเป็นอิมเมจเดิม</string>
+    <string name="install_force_backup_summary">โปรดตรวจสอบให้แน่ใจว่า boot image ที่คุณเลือกเป็นอิมเมจเดิม</string>
+    <string name="no_such_module">โมดูล %s ไม่มีอยู่</string>
+    <string name="require_manager_version">จำเป็นต้องอัปเดตตัวจัดการ</string>
+    <string name="require_kernel_version">จำเป็นต้องอัปเดตเคอร์เนล แตะเพื่อติดตั้ง</string>
+    <string name="require_kernel_version_gki">จำเป็นต้องอัปเดตเคอร์เนล</string>
+    <string name="group_contains_apps">มีแอป %d รายการ</string>
+    <string name="network_retry">ลองอีกครั้ง</string>
+    <string name="module_shortcut_title">สร้างทางลัด</string>
+    <string name="module_shortcut_name_label">ตั้งชื่อทางลัด</string>
+    <string name="module_shortcut_icon_pick">เลือกไอคอนแบบกำหนดเอง</string>
+    <string name="module_shortcut_delete">ลบทางลัด</string>
+    <string name="module_shortcut_permission_tip_default">หากการสร้างทางลัดล้มเหลว โปรดให้สิทธิ์อนุญาตให้สร้างทางลัดบนเดสก์ท็อปสำหรับแอปนี้ในการตั้งค่าระบบ</string>
 </resources>

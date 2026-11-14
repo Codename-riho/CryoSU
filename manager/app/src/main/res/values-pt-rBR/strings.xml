@@ -160,7 +160,7 @@
     <string name="settings_selinux_hide_summary">Impedir que os aplicativos detectem modificações do SELinux</string>
     <string name="settings_selinux_hide_reboot_required">Reinicie para que as alterações tenham efeito</string>
     <string name="settings_selinux_hide_failed">Erro: %d</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
+    <string name="home_learn_kernelsu_url">https://kernelsu.org/pt_BR/guide/what-is-kernelsu.html</string>
     <string name="profile_namespace">Espaço de nomes de montagem</string>
     <string name="profile_namespace_inherited">Herdado</string>
     <string name="profile_namespace_global">Global</string>

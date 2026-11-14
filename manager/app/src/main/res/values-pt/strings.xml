@@ -228,4 +228,11 @@
     <string name="settings_check_manager_update">Buscar atualizações do gerenciador</string>
     <string name="settings_check_manager_update_summary">Verificar atualizações do gerenciador automaticamente</string>
     <string name="settings_check_module_update">Verifique atualizações de módulo</string>
+    <string name="profile_namespace">Montar namespace</string>
+    <string name="profile_namespace_inherited">Herdado</string>
+    <string name="install_force_backup">Fazer backup como imagem original</string>
+    <string name="install_force_backup_summary">Certifique-se de que a imagem de boot selecionada seja a imagem original</string>
+    <string name="require_manager_version">É necessário atualizar a aplicação.</string>
+    <string name="require_kernel_version">É necessário atualizar o kernel. Toque para instalar.</string>
+    <string name="require_kernel_version_gki">É necessário atualizar o kernel.</string>
 </resources>

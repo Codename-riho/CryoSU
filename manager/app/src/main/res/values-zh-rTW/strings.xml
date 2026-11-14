@@ -539,4 +539,7 @@
     <string name="repo_support">支援</string>
     <string name="repo_homepage">首頁</string>
     <string name="module_flash_complete">模組刷寫完成</string>
+    <string name="require_manager_version">需要更新管理工具</string>
+    <string name="require_kernel_version">需要更新核心，點選開始安裝</string>
+    <string name="require_kernel_version_gki">需要更新核心</string>
 </resources>

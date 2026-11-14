@@ -133,7 +133,7 @@
     <string name="recently_installed">Нещодавно встановлені</string>
     <string name="app_profile_template_create">Створити шаблон</string>
     <string name="app_profile_template_edit">Редагувати шаблон</string>
-    <string name="app_profile_template_id">ID</string>
+    <string name="app_profile_template_id">Ідентифікатор</string>
     <string name="app_profile_template_id_invalid">Недійсний ID шаблону</string>
     <string name="app_profile_template_name">Назва</string>
     <string name="app_profile_template_description">Опис</string>

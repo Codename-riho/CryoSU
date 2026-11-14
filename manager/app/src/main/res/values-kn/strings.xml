@@ -56,4 +56,13 @@
     <string name="settings_sucompat_summary">ಆಪ್ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಸೂಪರ್‌ಯೂಸರ್ ಅನುಮತಿ ಪಡೆದ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಿಗೆ /system/bin/su ಅನ್ನು ksud ಗೆ ಮರು ನಿರ್ದೇಶಿಸಿ; ಹೊಸ ಪ್ರಕ್ರಿಯೆಗಳಿಗೆ ಮಾತ್ರ ಪರಿಣಾಮಕಾರಿ.</string>
     <string name="settings_kernel_umount">ಕರ್ನಲ್ ಅನ್‌ಮೌಂಟ್</string>
     <string name="settings_kernel_umount_summary">KernelSU ನಿಂದ ನಿಯಂತ್ರಿಸಲ್ಪಡುವ ಕರ್ನಲ್-ಮಟ್ಟದ ಅನ್‌ಮೌಂಟ್ ನಡವಳಿಕೆ</string>
+    <string name="profile_namespace">ಮೌಂಟ್ ನೇಮ್‌ಸ್ಪೇಸ್</string>
+    <string name="profile_namespace_inherited">ಪಿತ್ರಾರ್ಜಿತ</string>
+    <string name="profile_namespace_global">ಜಾಗತಿಕ</string>
+    <string name="profile_namespace_individual">ವೈಯಕ್ತಿಕ</string>
+    <string name="install_force_backup">ಮೂಲ ಇಮೇಜ್ ಆಗಿ ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
+    <string name="install_force_backup_summary">ದಯವಿಟ್ಟು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ boot ಇಮೇಜ್ ಮೂಲ ಇಮೇಜ್ ಆಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ</string>
+    <string name="require_manager_version">ಮ್ಯಾನೇಜರ್ ಅನ್ನು ನವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ.</string>
+    <string name="require_kernel_version">ಕರ್ನಲ್ ಅನ್ನು ನವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ. ಸ್ಥಾಪಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <string name="require_kernel_version_gki">ಕರ್ನಲ್ ಅನ್ನು ನವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ.</string>
 </resources>

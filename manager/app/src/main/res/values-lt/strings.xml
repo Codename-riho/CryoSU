@@ -73,4 +73,13 @@
     <string name="settings_sucompat_summary">Nukreipti /system/bin/su į ksud programoms, kurioms suteiktas Superuser leidimas programos profilyje; veiksminga tik naujiems procesams.</string>
     <string name="settings_kernel_umount">Branduolio atjungimas</string>
     <string name="settings_kernel_umount_summary">Branduolio lygio atjungimo elgsena, valdoma KernelSU</string>
+    <string name="profile_namespace">Prijungti vardų erdvę</string>
+    <string name="profile_namespace_inherited">Paveldėtas</string>
+    <string name="profile_namespace_global">Globalus</string>
+    <string name="profile_namespace_individual">Individualus</string>
+    <string name="install_force_backup">Kurti atsarginę kopiją kaip gamyklinį atvaizdą</string>
+    <string name="install_force_backup_summary">Įsitikinkite, kad pasirinktas boot atvaizdas yra gamyklinis atvaizdas</string>
+    <string name="require_manager_version">Reikia atnaujinti tvarkyklę.</string>
+    <string name="require_kernel_version">Reikia atnaujinti branduolį. Palieskite, kad įdiegtumėte.</string>
+    <string name="require_kernel_version_gki">Reikia atnaujinti branduolį.</string>
 </resources>

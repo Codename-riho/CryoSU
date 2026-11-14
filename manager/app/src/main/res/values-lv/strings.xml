@@ -107,4 +107,14 @@
     <string name="settings_sucompat_summary">Pārvirzīt /system/bin/su uz ksud lietotnēm, kurām piešķirta Superuser atļauja lietotnes profilā; efektīva tikai jauniem procesiem.</string>
     <string name="settings_kernel_umount">Kodola atvienošana</string>
     <string name="settings_kernel_umount_summary">Kodola līmeņa atvienošanas uzvedība, ko kontrolē KernelSU</string>
+    <string name="profile_namespace">Mount nosaukumvieta</string>
+    <string name="profile_namespace_inherited">Mantots</string>
+    <string name="profile_namespace_global">Globāli</string>
+    <string name="profile_namespace_individual">Individuāls</string>
+    <string name="install_force_backup">Dublēt kā sākotnējo attēlu</string>
+    <string name="install_force_backup_summary">Lūdzu, pārliecinieties, ka izvēlētais boot attēls ir sākotnējais attēls</string>
+    <string name="confirm">Apstiprināt</string>
+    <string name="require_manager_version">Nepieciešams pārvaldnieka atjauninājums.</string>
+    <string name="require_kernel_version">Nepieciešams kodola atjauninājums. Pieskarieties, lai instalētu.</string>
+    <string name="require_kernel_version_gki">Nepieciešams kodola atjauninājums.</string>
 </resources>

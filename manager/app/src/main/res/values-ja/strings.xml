@@ -322,4 +322,20 @@
     <string name="settings_flash_card_background_summary">フラッシュログが表示される画面にカードの背景を描画します。カスタム背景が設定されている間は常に表示されます</string>
     <string name="install_force_backup">純正イメージとしてバックアップ</string>
     <string name="install_force_backup_summary">選択したブートイメージが純正イメージであることを確認してください</string>
+    <string name="profile_namespace">名前空間のマウント</string>
+    <string name="profile_namespace_inherited">継承</string>
+    <string name="profile_namespace_global">共通</string>
+    <string name="profile_namespace_individual">分離</string>
+    <string name="settings_mode_disable_until_reboot">再起動するまで無効</string>
+    <string name="settings_mode_disable_always">常に無効</string>
+    <string name="no_such_module">モジュール %s は存在しません</string>
+    <string name="require_manager_version">マネージャーの更新が必要です。</string>
+    <string name="require_kernel_version">カーネルの更新が必要です。タップしてインストールします。</string>
+    <string name="require_kernel_version_gki">カーネルの更新が必要です。</string>
+    <string name="network_retry">再試行</string>
+    <string name="module_shortcut_title">ショートカットを作成</string>
+    <string name="module_shortcut_name_label">ショートカット名</string>
+    <string name="module_shortcut_icon_pick">カスタムアイコンを選択</string>
+    <string name="module_shortcut_delete">ショートカットを削除</string>
+    <string name="module_shortcut_permission_tip_default">ショートカットの作成に失敗した場合は、システム設定でこのアプリに対してホーム画面ショートカットの権限を有効にしてください。</string>
 </resources>

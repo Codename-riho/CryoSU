@@ -123,7 +123,7 @@
     <string name="settings_profile_template_summary">Uygulama Profili Şablonunu yerel ve çevrimiçi olarak yönetin</string>
     <string name="app_profile_template_create">Şablon oluştur</string>
     <string name="app_profile_template_edit">Şablonu düzenle</string>
-    <string name="app_profile_template_id">ID</string>
+    <string name="app_profile_template_id">Kimlik</string>
     <string name="app_profile_template_id_invalid">Geçersiz şablon ID\'si</string>
     <string name="app_profile_template_name">İsim</string>
     <string name="app_profile_template_description">Açıklama</string>

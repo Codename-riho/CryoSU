@@ -69,4 +69,23 @@
     <string name="settings_sucompat_summary">Tətbiq Profilinə Superuser icazəsi verilmiş proqramları /system/bin/su vasitəsilə superuser shell əldə etməyə icazə verir; yalnız yeni proseslər üçün effektivdir.</string>
     <string name="settings_kernel_umount">Nüvə umount</string>
     <string name="settings_kernel_umount_summary">KernelSU tərəfindən idarə olunan nüvə səviyyəsində umount davranışı</string>
+    <string name="profile_namespace">Bölmənin ad sahəsi</string>
+    <string name="profile_namespace_inherited">Miras qalmış</string>
+    <string name="profile_namespace_global">Qlobal</string>
+    <string name="profile_namespace_individual">Fərdi</string>
+    <string name="module_changelog">Dəyişikliklər jurnalı</string>
+    <string name="app_profile_template_create">Şablon yarat</string>
+    <string name="app_profile_template_edit">Şablonu redaktə et</string>
+    <string name="app_profile_template_id_invalid">Etibarsız şablon ID-si</string>
+    <string name="app_profile_template_name">Ad</string>
+    <string name="app_profile_template_description">Açıqlama</string>
+    <string name="app_profile_template_save">Yadda saxla</string>
+    <string name="app_profile_template_delete">Sil</string>
+    <string name="app_profile_template_view">Şablonu göstər</string>
+    <string name="install_force_backup">Orijinal imic kimi yedəklə</string>
+    <string name="install_force_backup_summary">Zəhmət olmasa seçdiyiniz boot imicinin orijinal imic olduğuna əmin olun</string>
+    <string name="confirm">Təsdiq edin</string>
+    <string name="require_manager_version">Meneceri yeniləmək lazımdır.</string>
+    <string name="require_kernel_version">Nüvəni yeniləmək lazımdır. Quraşdırmaq üçün toxunun.</string>
+    <string name="require_kernel_version_gki">Nüvəni yeniləmək lazımdır.</string>
 </resources>

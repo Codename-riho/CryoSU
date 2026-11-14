@@ -169,4 +169,15 @@
     <string name="check_log">Bitte überprüfen Sie das Log</string>
     <string name="installing_module">Modul wird installiert %1$d/%2$d</string>
     <string name="module_failed_count">%d Fehler bei der Installation eines neuen Moduls</string>
+    <string name="profile_namespace">Namespace einhängen</string>
+    <string name="profile_namespace_inherited">Geerbt</string>
+    <string name="profile_namespace_individual">Individuell</string>
+    <string name="install_select_partition">Partition wählen</string>
+    <string name="install_upload_lkm_file">Nutze lokale LKM Datei</string>
+    <string name="install_only_support_ko_file">Nur .ko Dateien unterstützt</string>
+    <string name="install_force_backup">Als Original-Image sichern</string>
+    <string name="install_force_backup_summary">Bitte stelle sicher, dass das ausgewählte Boot-Image das Original-Image ist</string>
+    <string name="require_manager_version">Manager-Update erforderlich.</string>
+    <string name="require_kernel_version">Kernel-Update erforderlich. Zum Installieren tippen.</string>
+    <string name="require_kernel_version_gki">Kernel-Update erforderlich.</string>
 </resources>
