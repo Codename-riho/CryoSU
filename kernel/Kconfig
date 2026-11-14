@@ -34,6 +34,21 @@ config KSU_UNRESTRICTED_FD
 		a KernelSU fd through the reboot magic. Enable this only if an app
 		must query the driver before being allowed su.
 
+config KSU_DISABLE_SETUID_RACE_GUARD
+	  bool "Disable the ptrace-race guard during su/manager grant (not recommended)"
+	  depends on KSU
+	  default n
+	  help
+		While a process is being granted su or recognized as the manager,
+		KernelSU now holds cred_guard_mutex -- the same lock execve()
+		already uses so a concurrent PTRACE_ATTACH cannot race a
+		credential change. Plain setuid()/setresuid() takes no such lock
+		on mainline Linux, so without this guard there is a narrow window
+		where another process's ptrace_attach() could land between the
+		allowlist check and the grant finishing. Enable this only if it
+		causes a lockup on your kernel fork; it does not affect su/manager
+		grants that already succeeded.
+
 config KSU_TOOLKIT_SUPPORT
       bool "KernelSU toolkit support"
       depends on KSU

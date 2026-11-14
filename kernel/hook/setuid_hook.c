@@ -1,5 +1,6 @@
 #include <linux/compiler.h>
 #include <linux/version.h>
+#include <linux/mutex.h>
 #include <linux/slab.h>
 #include <linux/thread_info.h>
 #include <linux/seccomp.h>
@@ -20,6 +21,7 @@
 #include "klog.h" // IWYU pragma: keep
 #include "manager/manager_identity.h"
 #include "infra/seccomp_cache.h"
+#include "selinux/selinux.h"
 #include "supercall/supercall.h"
 #ifdef CONFIG_KSU_TRACEPOINT_HOOK
 #include "hook/tp_marker.h"
@@ -151,7 +153,24 @@ int ksu_handle_setuid(uid_t new_uid, uid_t old_uid)
         pr_info_sens("handle_setresuid from %d to %d\n", old_uid, new_uid);
     }
 
-    if (ksu_is_allow_uid_for_current(new_uid)) {
+    // Plain setuid()/setresuid() is not serialized against a concurrent
+    // ptrace_attach() the way execve() is: do_execve() holds
+    // cred_guard_mutex across the whole credential switch specifically so
+    // a tracer cannot attach mid-transition, but the setuid(2) path takes
+    // no such lock on mainline Linux. ptrace_attach() itself already takes
+    // this same mutex (kernel/ptrace.c), so holding it here for the short
+    // window where we decide and apply the su/manager grant closes that
+    // race the same way exec already does, with no effect once the grant
+    // has finished. See CONFIG_KSU_DISABLE_SETUID_RACE_GUARD to opt out.
+#ifndef CONFIG_KSU_DISABLE_SETUID_RACE_GUARD
+    mutex_lock(&current->signal->cred_guard_mutex);
+#endif
+
+    // A second, independent signal beside the uid-range check in
+    // policy/allowlist.h: a process actually running in the isolated_app
+    // SELinux sandbox must never be granted su/manager status, even if its
+    // uid ever happened to match an allowlist entry.
+    if (ksu_is_allow_uid_for_current(new_uid) && !is_current_isolated_app_domain()) {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0)
         if (current->seccomp.mode == SECCOMP_MODE_FILTER && current->seccomp.filter) {
             spin_lock_irq(&current->sighand->siglock);
@@ -168,8 +187,15 @@ int ksu_handle_setuid(uid_t new_uid, uid_t old_uid)
             ksu_set_ksud_status(new_uid);
             ksu_install_fd();
         }
+#ifndef CONFIG_KSU_DISABLE_SETUID_RACE_GUARD
+        mutex_unlock(&current->signal->cred_guard_mutex);
+#endif
         return 0;
     }
+
+#ifndef CONFIG_KSU_DISABLE_SETUID_RACE_GUARD
+    mutex_unlock(&current->signal->cred_guard_mutex);
+#endif
 
     ksu_set_current_proc_unprivillege();
 

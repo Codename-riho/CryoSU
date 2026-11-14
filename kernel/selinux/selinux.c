@@ -1,6 +1,7 @@
 #include "linux/cred.h"
 #include "linux/sched.h"
 #include "linux/security.h"
+#include "linux/string.h"
 #include "linux/version.h"
 #include "selinux_defs.h"
 #include "klog.h" // IWYU pragma: keep
@@ -276,6 +277,45 @@ bool is_init(const struct cred *cred)
 bool is_adbd(const struct cred *cred)
 {
     return is_sid_match(cred, cached_adbd_sid, ADBD_CONTEXT);
+}
+
+/*
+ * isolated_app domains are not a single fixed context: devices add numbered
+ * variants (isolated_app_25, isolated_app_27, ...) as new isolation levels
+ * are introduced, so there is no single SID to cache and compare against.
+ * This is a config/grant-time check (su request, profile install), not a
+ * per-syscall hot path, so the extra secctx lookup here is not a concern.
+ */
+bool is_current_isolated_app_domain(void)
+{
+    const struct cred *cred = current_cred();
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 18, 0)
+    const struct task_security_struct *tsec;
+#else
+    const struct cred_security_struct *tsec;
+#endif
+    struct lsm_context ctx;
+    bool result;
+
+    if (!cred) {
+        return false;
+    }
+
+    tsec = selinux_cred(cred);
+    if (!tsec) {
+        return false;
+    }
+
+    if (__security_secid_to_secctx(tsec->sid, &ctx)) {
+        return false;
+    }
+
+    result =
+        ctx.len >= strlen("u:r:isolated_app") && !strncmp(ctx.context, "u:r:isolated_app", strlen("u:r:isolated_app"));
+
+    __security_release_secctx(&ctx);
+
+    return result;
 }
 
 #ifdef CONFIG_KSU_SUSFS

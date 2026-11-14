@@ -31,6 +31,14 @@ bool is_task_ksu_domain(const struct cred *cred);
 
 bool is_ksu_domain(void);
 
+// True if current's SELinux domain is isolated_app (or a numbered variant
+// such as isolated_app_25), the sandbox used for WebView renderers, media
+// extraction and the SDK Runtime. Used as a second, independent signal
+// alongside the uid-range check in policy/allowlist.h: su/manager status
+// must never be granted to such a process even if its uid math ever
+// happened to collide with an allowlist entry.
+bool is_current_isolated_app_domain(void);
+
 bool is_zygote(const struct cred *cred);
 
 #ifdef CONFIG_KSU_SUSFS

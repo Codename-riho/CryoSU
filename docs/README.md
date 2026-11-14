@@ -38,6 +38,8 @@ A [`tiann/KernelSU`](https://github.com/tiann/KernelSU)'s downstream, added some
 - Only root, the manager, and allowlisted uids can obtain a KernelSU fd via the reboot magic, so other apps cannot probe for the driver. Set `CONFIG_KSU_UNRESTRICTED_FD=y` to disable this.
 - Logs that reveal the manager package/uid, certificate hash, or allowlist uids are off by default. Set `CONFIG_KSU_VERBOSE_LOGS=y` (or `CONFIG_KSU_DEBUG=y`) to see them, e.g. `Crowning manager`.
 - Set `KSU_CRYOSU_SIZE` and `KSU_CRYOSU_HASH` at build time to trust the official CryoSU release signature.
+- su/manager requests are rejected for a caller running in the `isolated_app` SELinux sandbox, independent of the existing uid-range check.
+- Granting su/manager now briefly holds `cred_guard_mutex`, the same lock `execve()` uses, so a `ptrace_attach()` from another process cannot race the credential change. This does not affect an su session that has already been granted. Set `CONFIG_KSU_DISABLE_SETUID_RACE_GUARD=y` only if this causes a lockup on your fork.
 
 ## Hook Mode
 - `Tracepoint Syscall Redirect hook` The default hook mode, from [upstream](https://github.com/tiann/KernelSU), but its only support GKI2 kernel with `arm64-v8a` or `x86_64` ABI
