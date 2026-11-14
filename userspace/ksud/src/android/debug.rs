@@ -56,7 +56,7 @@ pub fn insmod(module: &Path, params: &[String]) -> Result<()> {
     // KSU_IOCTL_LOOKUP_SYMBOLS was introduced in UAPI v6. Prefer resolving the
     // module's undefined (non-exported) symbols through it; older kernels, or a
     // failed lookup, fall back to /proc/kallsyms.
-    const LOOKUP_SYMBOL_UAPI_VERSION: u32 = 6;
+    const LOOKUP_SYMBOL_UAPI_VERSION: u32 = 2;
 
     let module = module
         .canonicalize()

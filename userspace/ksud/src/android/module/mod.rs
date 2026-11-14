@@ -482,7 +482,7 @@ pub fn prune_modules() -> Result<()> {
 }
 
 // Kernels before this UAPI only look for modules.rc under /metadata/watchdog and /metadata.
-const PREINIT_VOLD_UAPI_VERSION: u32 = 6;
+const PREINIT_VOLD_UAPI_VERSION: u32 = 2;
 
 // Prefer /metadata/vold/ when the kernel reads it, else /metadata/watchdog/, else /metadata.
 pub fn preinit_ksu_dir() -> &'static str {
