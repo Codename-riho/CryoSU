@@ -13,8 +13,6 @@ import org.cryosu.cryosu.domain.model.ManagerRecord
 import org.cryosu.cryosu.domain.model.ManagerRuntimeInfo
 import org.cryosu.cryosu.getKernelVersion
 
-private const val DISPLAY_DRIVER_CODE = "13560/2"
-
 class KernelRepository(
     private val application: Application,
     private val ksuCliRepository: KsuCliRepository,
@@ -32,9 +30,7 @@ class KernelRepository(
             ksuVersion = ksuVersion,
             managerUAPIVersion = managerUapi,
             kernelUAPIVersion = kernelUapi,
-            // Hanya tampilan di Beranda. Nilai asli (Natives.version / kernelUapi) tetap dipakai
-            // untuk cek kompatibilitas dan fitur, jadi jangan diganti dengan DISPLAY_DRIVER_CODE.
-            ksuFullVersion = "$fullVersion ($DISPLAY_DRIVER_CODE)",
+            ksuFullVersion = "$fullVersion (${Natives.version}/$kernelUapi)",
             lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) Natives.isLkmMode else null },
             kernelVersion = kernelVersion,
             isRootAvailable = isRootAvailable,
