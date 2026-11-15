@@ -500,8 +500,9 @@ class DownloadService : Service() {
             setDataAndType(installUri, "application/vnd.android.package-archive")
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
-        // Tujuan eksplisit: jangan biarkan intent implisit (membawa URI + izin baca) dikirim ke
-        // aplikasi mana pun. Bila penangannya ditemukan, kunci ke paketnya; bila tidak, perilaku lama.
+        // Pastikan PendingIntent tidak pernah implisit.
+        // Jika installer ditemukan, kunci ke paket installer.
+        // Jika tidak ditemukan, fallback ke komponen internal aplikasi (eksplisit).
         val installHandler = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             packageManager.resolveActivity(
                 installIntent,
@@ -511,10 +512,14 @@ class DownloadService : Service() {
             @Suppress("DEPRECATION")
             packageManager.resolveActivity(installIntent, PackageManager.MATCH_DEFAULT_ONLY)
         }
-        installHandler?.activityInfo?.packageName
+        val installerPackage = installHandler?.activityInfo?.packageName
             // "android" = ResolverActivity (pemilih aplikasi), bukan penginstal sebenarnya.
             ?.takeIf { it != "android" }
-            ?.let { installIntent.setPackage(it) }
+        if (installerPackage != null) {
+            installIntent.setPackage(installerPackage)
+        } else {
+            installIntent.setClass(this, MainActivity::class.java)
+        }
         val installPendingIntent = PendingIntent.getActivity(
             this,
             COMPLETION_NOTIFICATION_ID_BASE + id,
