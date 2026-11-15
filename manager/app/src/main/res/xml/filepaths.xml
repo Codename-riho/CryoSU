@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+  Hanya dua lokasi yang boleh dibagikan lewat FileProvider:
+  - cache aplikasi (laporan bug, foto tema)
+  - folder Download publik (APK/zip hasil unduhan)
+  Sebelumnya <root-path path="."/> membuka seluruh filesystem.
+-->
 <paths>
-    <cache-path name="cache" path="."/>
-    <root-path name="root" path="." />
+    <cache-path name="cache" path="." />
+    <external-path name="downloads" path="Download/" />
 </paths>
