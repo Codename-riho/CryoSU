@@ -162,7 +162,7 @@ android {
         abi {
             isEnable = isReleaseTask
             reset()
-            include("arm64-v8a", "x86_64", "armeabi-v7a", "riscv64")
+            // Tanpa include(): hanya APK universal yang dibangun, tanpa APK per-ABI.
             isUniversalApk = true
         }
     }

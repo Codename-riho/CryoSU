@@ -107,6 +107,11 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [ "release", "debug" ]
+        variant: [ "standard", "spoofed" ]
+        exclude:
+          # Varian spoofed hanya untuk release.
+          - build_type: debug
+            variant: spoofed
     defaults:
       run:
         working-directory: ./manager
@@ -178,6 +183,10 @@ jobs:
             export BUILD_EXTRA_ARGS="-PKSU_PACKAGE_NAME=$KSU_PACKAGE_NAME -PKSU_NAME=$KSU_NAME"
           fi
 
+          if [ "${{ matrix.variant }}" == "spoofed" ]; then
+            export BUILD_EXTRA_ARGS="$BUILD_EXTRA_ARGS -PIS_SPOOFED_BUILD=true"
+          fi
+
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             ./gradlew assemble${{ matrix.build_type }} -Pcommit=${{ steps.commit.outputs.COMMIT_SHA }} -PIS_PR_BUILD=true $BUILD_EXTRA_ARGS
           else
@@ -187,7 +196,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: Manager-gradle-${{ matrix.build_type }}
+          name: Manager-gradle-${{ matrix.build_type }}${{ matrix.variant == 'spoofed' && '-spoofed' || '' }}
           path: |
             manager/app/build/outputs/apk/release/*.apk
             manager/app/build/outputs/apk/debug/*.apk
@@ -195,7 +204,7 @@ jobs:
       - name: Upload mappings
         uses: actions/upload-artifact@v7
         with:
-          name: "Manager-mappings"
+          name: "Manager-mappings${{ matrix.variant == 'spoofed' && '-spoofed' || '' }}"
           path: "manager/app/build/outputs/mapping/release/"
           if-no-files-found: ignore
 
@@ -207,6 +216,12 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [ "release", "debug" ]
+        variant: [ "standard", "spoofed" ]
+        exclude:
+          - build_type: debug
+            variant: spoofed
+    env:
+      ARTIFACT_SUFFIX: ${{ matrix.variant == 'spoofed' && '-spoofed' || '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -216,8 +231,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-            name: Manager-gradle-${{ matrix.build_type }}
-            path: artifacts/Manager-gradle-${{ matrix.build_type }}
+            name: Manager-gradle-${{ matrix.build_type }}${{ env.ARTIFACT_SUFFIX }}
+            path: artifacts/Manager-gradle-${{ matrix.build_type }}${{ env.ARTIFACT_SUFFIX }}
       
       - name: Download arm64 ksud
         uses: actions/download-artifact@v8
@@ -247,7 +262,7 @@ jobs:
       - name: Place manager apk and ksud artifacts
         run: |
           mkdir -p manager/app/build/outputs/apk/${{ matrix.build_type }}
-          APKS=$(find artifacts/Manager-gradle-${{ matrix.build_type }} -type f -name "*.apk")
+          APKS=$(find artifacts/Manager-gradle-${{ matrix.build_type }}${{ env.ARTIFACT_SUFFIX }} -type f -name "*.apk")
           APKS=$(echo "$APKS" | tr '\n' ' ')
           test -n "$APKS"
           cp -f $APKS manager/app/build/outputs/apk/${{ matrix.build_type }}/
@@ -312,12 +327,12 @@ jobs:
       - name: Delete gradle build
         uses: GeekyEggo/delete-artifact@v6
         with:
-          name: Manager-gradle-${{ matrix.build_type }}
-        
+          name: Manager-gradle-${{ matrix.build_type }}${{ env.ARTIFACT_SUFFIX }}
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v7
         with:
-          name: Manager-${{ matrix.build_type }}
+          name: Manager-${{ matrix.build_type }}${{ env.ARTIFACT_SUFFIX }}
           path: dist/*.apk
 
   telegram-bot-api:
