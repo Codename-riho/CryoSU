@@ -248,33 +248,9 @@ fun HomePage(
                     Spacer(modifier = Modifier.height(10.dp))
                 }
 
-                val noticeContext = LocalContext.current
-                val noticePrefs = remember {
-                    noticeContext.getSharedPreferences("cryosu_ui", android.content.Context.MODE_PRIVATE)
-                }
-                var driverNoticeDismissed by remember {
-                    mutableStateOf(noticePrefs.getBoolean("dismiss_driver_notice", false))
-                }
                 // Muncul hanya bila manager tidak mendeteksi driver (LKM maupun built-in).
-                if (uiState.systemStatus.ksuVersion == null && !driverNoticeDismissed) {
-                    // Peringatan informatif (tertiary) yang bisa ditutup, bukan alarm merah.
-                    WarningCard(
-                        message = stringResource(R.string.driver_not_detected_notice),
-                        color = MaterialTheme.colorScheme.tertiaryContainer,
-                        icon = {
-                            Icon(
-                                imageVector = Icons.TwoTone.Error,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onTertiaryContainer,
-                                modifier = Modifier.size(18.dp),
-                            )
-                        },
-                        onClose = {
-                            driverNoticeDismissed = true
-                            noticePrefs.edit().putBoolean("dismiss_driver_notice", true).apply()
-                        },
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
+                if (uiState.systemStatus.ksuVersion == null) {
+                    DriverNotDetectedNotice()
                 }
 
                 if (BuildConfig.IS_PR_BUILD || uiState.systemStatus.isPrBuild) {
@@ -572,6 +548,38 @@ private fun TopBar(
         windowInsets = TopAppBarDefaults.windowInsets.add(WindowInsets(left = 12.dp)),
         scrollBehavior = scrollBehavior,
     )
+}
+
+/**
+ * Peringatan informatif (tertiary) yang bisa ditutup, bukan alarm merah. Status "ditutup" disimpan
+ * permanen dan dikelola di sini agar menutupnya tidak membuat seluruh Beranda recompose.
+ */
+@Composable
+private fun DriverNotDetectedNotice() {
+    val context = LocalContext.current
+    val prefs = remember {
+        context.getSharedPreferences("cryosu_ui", android.content.Context.MODE_PRIVATE)
+    }
+    var dismissed by remember { mutableStateOf(prefs.getBoolean("dismiss_driver_notice", false)) }
+    if (dismissed) return
+
+    WarningCard(
+        message = stringResource(R.string.driver_not_detected_notice),
+        color = MaterialTheme.colorScheme.tertiaryContainer,
+        icon = {
+            Icon(
+                imageVector = Icons.TwoTone.Error,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                modifier = Modifier.size(18.dp),
+            )
+        },
+        onClose = {
+            dismissed = true
+            prefs.edit().putBoolean("dismiss_driver_notice", true).apply()
+        },
+    )
+    Spacer(modifier = Modifier.height(10.dp))
 }
 
 @Composable

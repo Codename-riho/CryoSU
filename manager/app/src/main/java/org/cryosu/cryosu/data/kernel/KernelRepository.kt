@@ -1,6 +1,5 @@
 package org.cryosu.cryosu.data.kernel
 
-import android.app.Application
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.cryosu.cryosu.Natives
@@ -13,10 +12,7 @@ import org.cryosu.cryosu.domain.model.ManagerRecord
 import org.cryosu.cryosu.domain.model.ManagerRuntimeInfo
 import org.cryosu.cryosu.getKernelVersion
 
-class KernelRepository(
-    private val application: Application,
-    private val ksuCliRepository: KsuCliRepository,
-) {
+class KernelRepository(private val ksuCliRepository: KsuCliRepository) {
     suspend fun getStatus(): KernelStatus = withContext(Dispatchers.IO) {
         val kernelVersion = getKernelVersion()
         val isManager = runCatching { Natives.isManager }.getOrDefault(false)
