@@ -19,8 +19,17 @@ object Natives {
     // 10977: change groups_count and groups to avoid overflow write
     // 11071: Fix the issue of failing to set a custom SELinux type.
     // 12143: breaking: new supercall impl
-    // Penomoran direset ke 13560 (UAPI 2). Riwayat fitur lama (<= 35002) sudah termasuk di sini.
-    const val MINIMAL_SUPPORTED_KERNEL = 13560
+    // 32310: new get_allow_list ioctl
+    // 34634(upstream 32336): new set_sepolicy ioctl
+    // 34685(upstream 32377): add set_init_pgrp ioctl
+    // 34709: breaking: unify uapi
+    // 34713: change kernel_su_domain to u:r:ksu:s0
+    // 34795: feature id 3 to adb root
+    // 34944: Drop KPM support
+    // 34966(upstream 32513): add uapi version
+    // 34967(upstream 32514): allowlist v4 root profile flags
+    // 35002: add sync set dynamic-manager api
+    const val MINIMAL_SUPPORTED_KERNEL = 35002
 
     const val KERNEL_SU_DOMAIN = "u:r:ksu:s0"
 
