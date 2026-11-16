@@ -237,7 +237,6 @@
     <string name="profile_flags">Flags</string>
     <string name="profile_flags_desc_no_new_privs">Evitar una mayor escalada de privilegios mediante KernelSU desde el contexto de este perfil root.</string>
     <string name="debug_version_notice">Estás utilizando una compilación de depuración (DEBUG) del gestor; si no sabes qué es una versión de depuración, cambia inmediatamente a una compilación de lanzamiento (RELEASE)</string>
-    <string name="unofficial_version_notice">El gestor que está utilizando no es el gestor oficial de %s, y es posible que no pueda obtener permisos.</string>
     <string name="conflict_with_apatch">Se ha detectado APatch, es posible que todo deje de funcionar.</string>
     <string name="module_action_success">La acción del módulo se ejecutó correctamente.</string>
     <string name="manage_app_profile">Gestionar plantilla de perfil de aplicación</string>

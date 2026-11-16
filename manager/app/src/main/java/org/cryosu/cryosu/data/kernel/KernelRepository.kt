@@ -37,10 +37,6 @@ class KernelRepository(
             isFullFeatured = isRootAvailable && runCatching { Natives.isFullFeatured() }
                 .getOrDefault(false),
             isSELinuxPermissive = runCatching { isSELinuxPermissive() }.getOrDefault(false),
-            // Bila kernel sudah menerima manajer ini, izin pasti diberikan: tidak perlu peringatan.
-            isOfficialSignature = isManager || runCatching {
-                ksuCliRepository.isOfficialSignature(application.packageResourcePath)
-            }.getOrDefault(false),
             kernelPatchImplementation = runCatching {
                 Natives.getKernelPatchImplementation()
             }.getOrDefault(KernelPatchImplementation.NONE),

@@ -234,7 +234,6 @@
     <string name="profile_flags">Drapeaux</string>
     <string name="profile_flags_desc_no_new_privs">Empêche toute élévation de privilèges supplémentaire via KernelSU dans le contexte de ce profil root.</string>
     <string name="debug_version_notice">Ceci est une version \"DEBUG\" du gestionnaire, en cas de doute sur ce qu\'est une version \"DEBUG\", désinstaller cette application et installer une version \"RELEASE\" à la place.</string>
-    <string name="unofficial_version_notice">Ce gestionnaire n\'est pas le gestionnaire officiel de %s, certaines permissions pourraient par conséquent être impossibles à obtenir.</string>
     <string name="conflict_with_apatch">APatch détecté, tout le système pourrait cesser de fonctionner.</string>
     <string name="module_action_success">Action du module exécutée avec succès.</string>
     <string name="manage_app_profile">Gestion des modèles de profils d\'application</string>

@@ -121,7 +121,6 @@
     <string name="profile_flags">ফ্ল্যাগ</string>
     <string name="profile_flags_desc_no_new_privs">এই রুট প্রোফাইলের প্রসঙ্গের ভেতর থেকে KernelSU-এর মাধ্যমে আরও বিশেষাধিকার বৃদ্ধি প্রতিরোধ করুন।</string>
     <string name="debug_version_notice">আপনি ম্যানেজারের একটি DEBUG বিল্ড ব্যবহার করছেন, DEBUG সংস্করণ কী তা না জানলে অবিলম্বে একটি RELEASE বিল্ডে স্যুইচ করুন</string>
-    <string name="unofficial_version_notice">আপনি যে ম্যানেজার ব্যবহার করছেন সেটি অফিসিয়াল %s ম্যানেজার নয়, এবং আপনি অনুমতি পেতে নাও পারেন।</string>
     <string name="conflict_with_apatch">APatch শনাক্ত হয়েছে, সবকিছু কাজ করা বন্ধ করতে পারে।</string>
     <string name="settings_umount_modules_default_summary">অ্যাপ প্রোফাইলে \"মডিউল আনমাউন্ট\"-এর গ্লোবাল ডিফল্ট মান। সক্রিয় থাকলে, যে অ্যাপের প্রোফাইল সেট করা নেই তাদের জন্য সিস্টেমে মডিউলের সব পরিবর্তন সরিয়ে দেবে</string>
     <string name="profile_umount_modules_summary">এই বিকল্পটি সক্রিয় করলে KernelSU এই অ্যাপের জন্য মডিউল দ্বারা পরিবর্তিত যেকোনো ফাইল পুনরুদ্ধার করতে পারবে</string>

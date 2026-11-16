@@ -238,7 +238,6 @@
     <string name="settings_selinux_hide">أخفي تعديلات SELinux</string>
     <string name="settings_selinux_hide_summary">إمنع التطبيقات من اكتشاف التعديلات على SELinux</string>
     <string name="debug_version_notice">انت تستخدم نسخة المطورين من التطبيق، اذا لم تكن تعلم ماهي نسخة المطورين انتقل الى نسخة الإصدار الرسمي فوراً</string>
-    <string name="unofficial_version_notice">المدير الذي تستعمله ليس مدير %s الرسمي، وقد لاتتمكن من الحصول على الأذون.</string>
     <string name="manage_app_profile">إدارة قالب ملف تعريف التطبيق</string>
     <string name="recently_installed">تثبتت حديثاً</string>
     <string name="affected_applications">البرامج المتأثرة</string>

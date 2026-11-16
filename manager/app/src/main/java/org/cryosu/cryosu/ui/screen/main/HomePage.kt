@@ -252,16 +252,14 @@ fun HomePage(
                 val noticePrefs = remember {
                     noticeContext.getSharedPreferences("cryosu_ui", android.content.Context.MODE_PRIVATE)
                 }
-                var unofficialNoticeDismissed by remember {
-                    mutableStateOf(noticePrefs.getBoolean("dismiss_unofficial_notice", false))
+                var driverNoticeDismissed by remember {
+                    mutableStateOf(noticePrefs.getBoolean("dismiss_driver_notice", false))
                 }
-                if (!uiState.systemStatus.isOfficialSignature && !unofficialNoticeDismissed) {
+                // Muncul hanya bila manager tidak mendeteksi driver (LKM maupun built-in).
+                if (uiState.systemStatus.ksuVersion == null && !driverNoticeDismissed) {
                     // Peringatan informatif (tertiary) yang bisa ditutup, bukan alarm merah.
                     WarningCard(
-                        message = stringResource(
-                            R.string.unofficial_version_notice,
-                            stringResource(R.string.app_name),
-                        ),
+                        message = stringResource(R.string.driver_not_detected_notice),
                         color = MaterialTheme.colorScheme.tertiaryContainer,
                         icon = {
                             Icon(
@@ -272,8 +270,8 @@ fun HomePage(
                             )
                         },
                         onClose = {
-                            unofficialNoticeDismissed = true
-                            noticePrefs.edit().putBoolean("dismiss_unofficial_notice", true).apply()
+                            driverNoticeDismissed = true
+                            noticePrefs.edit().putBoolean("dismiss_driver_notice", true).apply()
                         },
                     )
                     Spacer(modifier = Modifier.height(10.dp))

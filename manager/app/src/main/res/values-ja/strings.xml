@@ -298,7 +298,6 @@
     <string name="settings_soft_reboot">再起動の代わりにソフト リブートを使用</string>
     <string name="settings_soft_reboot_summary">モジュールのインストール、更新、または有効化／無効化を行う際は、完全な再起動ではなく、ソフト リブートを行います。</string>
     <string name="debug_version_notice">現在、マネージャーのデバッグビルドを使用しています。デバッグ バージョンが何かわからない場合は、直ちにリリースビルドに切り替えてください</string>
-    <string name="unofficial_version_notice">現在、公式の %s マネージャーを使用していません。そのため、権限を取得できない可能性があります。</string>
     <string name="conflict_with_apatch">APatch が検出されました。すべての機能が動作しなくなる可能性があります。</string>
     <string name="manage_app_profile">App Profile のテンプレートを管理</string>
     <string name="recently_installed">最近インストールされた</string>
