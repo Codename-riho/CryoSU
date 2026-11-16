@@ -21,15 +21,7 @@ fn get_git_version() -> Result<(u32, String), std::io::Error> {
         .trim()
         .parse()
         .map_err(|_| std::io::Error::other("Failed to parse git count"))?;
-    // Version code = commit count + VERSION_OFFSET (single source at the repo root, shared
-    // with kernel/Kbuild and the manager).
-    let offset_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../VERSION_OFFSET");
-    println!("cargo:rerun-if-changed={}", offset_path.display());
-    let offset: u32 = fs::read_to_string(&offset_path)?
-        .trim()
-        .parse()
-        .map_err(|_| std::io::Error::other("Failed to parse VERSION_OFFSET"))?;
-    let version_code = offset + version_code;
+    let version_code = 30000 + 700 + version_code; // For historical reasons
 
     let version_name = String::from_utf8(
         Command::new("git")

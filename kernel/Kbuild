@@ -77,13 +77,8 @@ endif
 
 $(shell cd $(KSU_SRC); [ -f ../.git/shallow ] && $(GIT_BIN) fetch --unshallow)
 KSU_LOCAL_VERSION := $(shell cd $(KSU_SRC); $(GIT_BIN) rev-list --count HEAD)
-# Kode versi = jumlah commit + VERSION_OFFSET (sumber tunggal di root repo; dipakai juga
-# oleh manager dan ksud). Direset ke 13560 pada commit ke-4584.
-KSU_VERSION_OFFSET := $(strip $(shell cat $(KSU_SRC)/../VERSION_OFFSET 2>/dev/null))
-ifeq ($(KSU_VERSION_OFFSET),)
-$(error VERSION_OFFSET tidak ditemukan di root repo $(REPO_NAME))
-endif
-KSU_VERSION := $(shell expr $(KSU_LOCAL_VERSION) + $(KSU_VERSION_OFFSET))
+# Reset: 13560 pada commit 4583 (13560 - 4583 = 8977)
+KSU_VERSION := $(shell expr $(KSU_LOCAL_VERSION) + 8977)
 
 KSU_TAG_NAME    := $(shell cd $(KSU_SRC); $(GIT_BIN) describe --abbrev=0 --tags 2>/dev/null || echo "v4.1.0")
 KSU_COMMIT_SHA  := $(shell cd $(KSU_SRC); $(GIT_BIN) rev-parse --short=8 HEAD 2>/dev/null || echo "unknown")
