@@ -9,10 +9,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +24,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.Article
@@ -606,6 +606,7 @@ fun SettingsPage(bottomPadding: Dp) {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SettingsQuickActions(
     versionText: String,
@@ -620,9 +621,11 @@ private fun SettingsQuickActions(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
         )
-        Row(
-            modifier = Modifier.horizontalScroll(rememberScrollState()),
+        // FlowRow: semua chip selalu terlihat penuh (turun ke baris berikutnya bila sempit),
+        // bukan baris yang terpotong dan sulit digeser di dalam pager.
+        FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             QuickActionChip(Icons.TwoTone.Palette, stringResource(R.string.theme_settings), onTheme)
             QuickActionChip(Icons.TwoTone.BugReport, stringResource(R.string.send_log), onLog)
