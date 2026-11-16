@@ -184,7 +184,12 @@ jobs:
           fi
 
           if [ "${{ matrix.variant }}" == "spoofed" ]; then
-            export BUILD_EXTRA_ARGS="$BUILD_EXTRA_ARGS -PIS_SPOOFED_BUILD=true"
+            # 8 + 6 huruf kecil acak (hex 0-9 dipetakan ke g-p supaya tidak ada angka)
+            RND1=$(openssl rand -hex 4 | tr '0-9' 'g-p')
+            RND2=$(openssl rand -hex 3 | tr '0-9' 'g-p')
+            export KSU_PACKAGE_NAME="com.${RND1}.${RND2}"
+            export BUILD_EXTRA_ARGS="$BUILD_EXTRA_ARGS -PKSU_PACKAGE_NAME=$KSU_PACKAGE_NAME -PIS_SPOOFED_BUILD=true"
+            echo "Spoofed package: $KSU_PACKAGE_NAME" >> $GITHUB_STEP_SUMMARY
           fi
 
           if [ "${{ github.event_name }}" == "pull_request" ]; then
